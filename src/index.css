@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,700;1,14..32,700&family=Oswald:wght@700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  --font-oswald: "Oswald";
+  --font-roboto: "Roboto";
+  --font-inter: "Inter";
+  --color-ungu: #3c153b;
+}
+
+@layer base {
+  body {
+    @apply bg-black text-white font-roboto font-light;
+  }
+}
+
+@layer components {
+  .Clickable {
+    @apply bg-ungu p-3 px-8 rounded hover:rounded-2xl transition-all duration-500 ease-in-out cursor-pointer;
+  }
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+}
