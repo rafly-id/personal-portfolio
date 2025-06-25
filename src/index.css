@@ -6,18 +6,20 @@
   --font-oswald: "Oswald";
   --font-roboto: "Roboto";
   --font-inter: "Inter";
-  --color-ungu: #3c153b;
+  --color-ungu: #211d27;
+  --color-putih: #d3d0d7;
+  --color-ungu-text: #d0b4f3;
 }
 
 @layer base {
   body {
-    @apply bg-black text-white font-roboto font-light;
+    @apply bg-black text-putih font-roboto;
   }
 }
 
 @layer components {
   .Clickable {
-    @apply bg-ungu rounded hover:rounded-lg transition-all duration-500 ease-in-out cursor-pointer;
+    @apply bg-ungu text-ungu-text rounded hover:brightness-150 transition-all duration-500 ease-in-out cursor-pointer;
   }
   .flex-center {
     @apply flex justify-center items-center;
