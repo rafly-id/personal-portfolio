@@ -26,8 +26,8 @@ const Home = () => {
 
   return (
     <>
-      <div className="mt-50 mb-10 max-w-2xl justify-start mx-5 tracking-tight md:ml-15 md:text-3xl md:mt-80">
-        <div className="text-container">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-50 mx-5 tracking-tight md:text-3xl md:mt-80">
+        <div className="text-container max-w-2xl md:ml-15">
           <p className="mb-3 md:mb-5">
             Raf portofolio.
             <span className="text"> A simple place where I</span>
@@ -56,6 +56,7 @@ const Home = () => {
           </p>
           <p className="text">This is me and my journey.</p>
         </div>
+        <div className="gap-5 grid grid-cols-3 md:mr-15 max-w-2xl"></div>
       </div>
     </>
   );
