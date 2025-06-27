@@ -39,14 +39,13 @@ const Home = () => {
         start: "top top",
         end: "+300px top",
         scrub: 1,
-        markers: true,
       },
     });
   });
 
   return (
     <>
-      <div className="mt-50 mb-10 max-w-2xl justify-start mx-5 tracking-tight md:ml-15 md:text-3xl md:mt-95">
+      <div className="mt-50 mb-10 max-w-2xl justify-start mx-5 tracking-tight md:ml-15 md:text-3xl md:mt-80">
         <div className="container">
           <span className="">Raf portofolio.</span>
           <p className="mb-5 text">
