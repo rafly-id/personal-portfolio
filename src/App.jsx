@@ -4,6 +4,8 @@ import gsap from "gsap";
 import { ScrollTrigger, ScrollSmoother } from "gsap/all";
 import Nav from "./components/Nav";
 import Home from "./components/Home";
+import Project from "./components/Project";
+import Contact from "./components/Contact";
 
 // register plugin sekali
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -31,6 +33,8 @@ const App = () => {
       <section id="wrapper-smooth">
         <div id="content-smooth">
           <Home />
+          <Project />
+          <Contact />
         </div>
       </section>
     </>
