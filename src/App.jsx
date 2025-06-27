@@ -5,11 +5,7 @@ import Home from "./components/Home";
 const App = () => (
   <>
     <Nav />
-    <section id="wrapper-smooth">
-      <div id="content-smooth">
-        <Home />
-      </div>
-    </section>
+    <Home />
   </>
 );
 
