@@ -24,4 +24,7 @@
   .flex-center {
     @apply flex justify-center items-center;
   }
+  .nav-fixed {
+    @apply fixed top-0 left-0 w-full z-50;
+  }
 }
