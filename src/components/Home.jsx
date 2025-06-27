@@ -35,19 +35,20 @@ const Home = () => {
       y: 10,
       stagger: 0.3,
       scrollTrigger: {
-        trigger: ".container",
-        start: "top center",
-        end: "bottom center",
+        trigger: "#nav",
+        start: "top top",
+        end: "+300px top",
         scrub: 1,
+        markers: true,
       },
     });
   });
 
   return (
     <>
-      <div className="mt-25 mb-10 max-w-2xl justify-start mx-5 tracking-tight md:ml-15 md:text-3xl md:mt-95">
+      <div className="mt-50 mb-10 max-w-2xl justify-start mx-5 tracking-tight md:ml-15 md:text-3xl md:mt-95">
         <div className="container">
-          <span className="">Raf portfolio.</span>
+          <span className="">Raf portofolio.</span>
           <p className="mb-5 text">
             A simple place where I organize my work, share my progress, and
             record my journey.
