@@ -19,18 +19,17 @@ const Home = () => {
         start: "top 30%",
         end: "150px 30%",
         scrub: 1,
-        scroller: "#wrapper-smooth",
       },
     });
   });
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-50 mx-5 tracking-tight md:text-3xl md:mt-80">
+      <section className="pb-25 md:pb-50 mt-50 mx-5 tracking-tight text-xl md:text-3xl md:mt-80">
         <div className="text-container max-w-2xl md:ml-15">
           <p className="mb-3 md:mb-5">
             Raf portofolio.
-            <span className="text"> A simple place where I</span>
+            <span className="text"> A simple space where I</span>
             <span className="text"> organize my work,</span>
             <span className="text"> share my progress,</span>
             <span className="text"> and record my journey.</span>
@@ -56,8 +55,7 @@ const Home = () => {
           </p>
           <p className="text">This is me and my journey.</p>
         </div>
-        <div className="gap-5 grid grid-cols-3 md:mr-15 max-w-2xl"></div>
-      </div>
+      </section>
     </>
   );
 };

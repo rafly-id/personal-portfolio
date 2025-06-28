@@ -5,7 +5,6 @@
 @theme {
   --font-oswald: "Oswald";
   --font-roboto: "Roboto";
-  --font-inter: "Inter";
   --color-ungu: #211d27;
   --color-putih: #d3d0d7;
   --color-ungu-text: #d0b4f3;
@@ -21,10 +20,14 @@
   .Clickable {
     @apply bg-ungu text-ungu-text rounded hover:brightness-150 cursor-pointer;
   }
-  .flex-center {
-    @apply flex justify-center items-center;
-  }
   .nav-fixed {
     @apply fixed top-0 left-0 w-full z-50;
   }
+  .project-card {
+    @apply h-full w-full object-cover overflow-hidden;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
 }
