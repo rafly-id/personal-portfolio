@@ -27,7 +27,3 @@
     @apply h-full w-full object-cover overflow-hidden;
   }
 }
-
-html {
-  scroll-behavior: smooth;
-}

@@ -15,6 +15,7 @@ const Home = () => {
         ease: "power3.inOut",
       },
       scrollTrigger: {
+        scroller: "#wrapper-smooth",
         trigger: ".text-container",
         start: "top 30%",
         end: "150px 30%",

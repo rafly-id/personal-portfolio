@@ -15,6 +15,7 @@ const Project = () => {
         from: "start",
       },
       scrollTrigger: {
+        scroller: "#wrapper-smooth",
         trigger: ".card-container",
         start: "top 50%",
         end: "top 50%",
@@ -25,7 +26,7 @@ const Project = () => {
 
   return (
     <section className="min-h-screen pb-25 md:pb-50 mx-5 md:mx-20">
-      <div className="mb-5 text-4xl font-oswald">
+      <div className="mb-5 text-7xl font-oswald">
         <h1>PROJECT</h1>
       </div>
       <div className="card-container">

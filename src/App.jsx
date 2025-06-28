@@ -3,13 +3,41 @@ import Home from "./components/Home";
 import Project from "./components/Project";
 import Contact from "./components/Contact";
 
+import gsap from "gsap";
+import { useEffect } from "react";
+import { ScrollTrigger, ScrollSmoother } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
 const App = () => {
+  useEffect(() => {
+    const smoother = ScrollSmoother.create({
+      smooth: 2,
+      effects: false,
+      wrapper: "#wrapper-smooth",
+      content: "#content-smooth",
+    });
+
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+
+    return () => {
+      ScrollTrigger.killAll();
+      smoother.kill();
+    };
+  }, []);
+
   return (
     <>
       <Nav />
-      <Home />
-      <Project />
-      <Contact />
+      <div id="wrapper-smooth">
+        <div id="content-smooth">
+          <Home />
+          <Project />
+          <Contact />
+        </div>
+      </div>
     </>
   );
 };
