@@ -19,7 +19,7 @@
 
 @layer components {
   .Clickable {
-    @apply bg-ungu text-ungu-text rounded hover:brightness-150 transition-all duration-500 ease-in-out cursor-pointer;
+    @apply bg-ungu text-ungu-text rounded hover:brightness-150 cursor-pointer;
   }
   .flex-center {
     @apply flex justify-center items-center;
