@@ -5,9 +5,7 @@
 @theme {
   --font-oswald: "Oswald";
   --font-roboto: "Roboto";
-  --color-ungu: #211d27;
   --color-putih: #d3d0d7;
-  --color-ungu-text: #d0b4f3;
 }
 
 @layer base {
@@ -17,13 +15,7 @@
 }
 
 @layer components {
-  .Clickable {
-    @apply bg-ungu text-ungu-text rounded hover:brightness-150 cursor-pointer;
-  }
   .nav-fixed {
     @apply fixed top-0 left-0 w-full z-50;
-  }
-  .project-card {
-    @apply h-full w-full object-cover overflow-hidden;
   }
 }

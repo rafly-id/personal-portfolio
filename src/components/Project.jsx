@@ -13,7 +13,7 @@ export default function Project() {
         item.addEventListener("mouseenter", () => {
           gsap.to(item, {
             y: -5,
-            backgroundColor: "#ffffff",
+            backgroundColor: "#d3d0d7",
             color: "#000000",
             duration: 0.5,
             ease: "power3.out",
