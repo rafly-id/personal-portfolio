@@ -1,63 +1,61 @@
+import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
-import { useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Project = () => {
-  const containerRef = useRef(null);
+export default function Project() {
+  const ctxRef = useRef(null);
 
-  useGSAP(() => {
-    const cards = containerRef.current.querySelectorAll(".project-card");
+  useLayoutEffect(() => {
+    ctxRef.current = gsap.context(() => {
+      gsap.utils.toArray(".project-item").forEach((item) => {
+        item.addEventListener("mouseenter", () => {
+          gsap.to(item, {
+            y: -5,
+            backgroundColor: "#ffffff",
+            color: "#000000",
+            duration: 0.5,
+            ease: "power3.out",
+          });
+        });
 
-    gsap.from(cards, {
-      y: 100,
-      height: 0,
-      ease: "power3.in",
-      duration: 1,
-      stagger: {
-        each: 0.5,
-        from: "start",
-      },
-      scrollTrigger: {
-        scroller: "#wrapper-smooth",
-        trigger: containerRef.current,
-        start: "top 50%",
-        end: "top 50%",
-        toggleActions: "play none reverse none",
-      },
+        item.addEventListener("mouseleave", () => {
+          gsap.to(item, {
+            backgroundColor: "transparent",
+            color: "inherit",
+            y: 0,
+            duration: 0.5,
+            ease: "power3.out",
+          });
+        });
+      });
     });
-  });
+
+    return () => ctxRef.current.revert();
+  }, []);
 
   return (
-    <section className="min-h-screen pb-25 md:pb-50 mx-5 md:mx-20">
-      <div className="mb-5 text-3xl font-oswald">
-        <h1>PROJECT</h1>
-      </div>
-      <div className="card-container" ref={containerRef}>
+    <section className="w-full">
+      <div className="text-xl md:text-5xl font-black uppercase">
+        <div className="text-xs font-light mb-2 ml-5">
+          <h1>project</h1>
+        </div>
         <div>
-          <img
-            src="./src/assets/project-1.png"
-            alt="project-1"
-            className="project-card h-50 md:h-100 mb-5 rounded-xl"
-          />
-          <div className="md:flex gap-5">
-            <img
-              src="./src/assets/project-2.png"
-              alt="project-2"
-              className="project-card h-50 md:h-100 rounded-xl"
-            />
-            <img
-              src="./src/assets/project-3.png"
-              alt="project-3"
-              className="project-card h-50 md:h-100 rounded-xl"
-            />
+          <div className="project-item flex border-y py-3 md:py-5 justify-between cursor-pointer">
+            <h1 className="ml-5">Movie App</h1>
+            <h1 className="mr-5">project</h1>
+          </div>
+          <div className="project-item flex border-b py-3 md:py-5 justify-between cursor-pointer">
+            <h1 className="ml-5">Awward App</h1>
+            <h1 className="mr-5">project</h1>
+          </div>
+          <div className="project-item flex border-b py-3 md:py-5 justify-between cursor-pointer">
+            <h1 className="ml-5">Portofolio App</h1>
+            <h1 className="mr-5">project</h1>
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default Project;
+}
