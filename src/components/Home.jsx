@@ -6,7 +6,7 @@ const Home = () => {
       </div>
       <div className="flex text-center justify-center">
         <h1 className="-tracking-wider text-3xl md:text-7xl max-w-full font-oswald uppercase">
-          Hey. I'm Muhammad Rafly Adriansyah - a junior frontend developer from indonesia
+          Hey. I'm Muhammad Rafly Adriansyah - a junior frontend web developer from indonesia
         </h1>
       </div>
     </section>
