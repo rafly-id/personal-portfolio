@@ -1,9 +1,13 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 
 const Nav = () => {
+  const navRef = useRef(null);
+
   useGSAP(() => {
-    gsap.from(".nav-text", {
+    const items = navRef.current.querySelectorAll(".nav-text");
+    gsap.from(items, {
       opacity: 0,
       y: 5,
       ease: "power3.in",
@@ -15,7 +19,7 @@ const Nav = () => {
   });
 
   return (
-    <nav className="nav-fixed py-5 bg-black/50 md:bg-transparent">
+    <nav className="nav-fixed py-5 bg-black/50 md:bg-transparent" ref={navRef}>
       <div className="flex items-center justify-between px-5 md:px-0">
         <div className="md:p-5">
           <h1 className="nav-text">Raf</h1>
