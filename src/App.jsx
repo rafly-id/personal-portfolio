@@ -6,6 +6,7 @@ import Contact from "./components/Contact";
 import gsap from "gsap";
 import { useEffect } from "react";
 import { ScrollTrigger, ScrollSmoother } from "gsap/all";
+import About from "./components/About";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -34,8 +35,9 @@ const App = () => {
       <div id="wrapper-smooth">
         <div id="content-smooth">
           <Home />
+          <About />
           <Project />
-          <Contact />
+          {/* <Contact /> */}
         </div>
       </div>
     </>
