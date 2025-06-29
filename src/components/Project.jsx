@@ -44,12 +44,12 @@ const Project = () => {
           />
           <div className="md:flex gap-5">
             <img
-              src="./src/assets/project-1.png"
+              src="./src/assets/project-2.png"
               alt="project-2"
               className="project-card h-50 md:h-100 rounded-xl"
             />
             <img
-              src="./src/assets/project-1.png"
+              src="./src/assets/project-3.png"
               alt="project-3"
               className="project-card h-50 md:h-100 rounded-xl"
             />
