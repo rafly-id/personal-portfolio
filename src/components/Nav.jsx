@@ -19,21 +19,22 @@ const Nav = () => {
   });
 
   return (
-    <nav className="nav-fixed py-5 bg-black/50 md:bg-transparent" ref={navRef}>
-      <div className="flex items-center justify-between px-5 md:px-0">
-        <div className="md:p-5">
-          <h1 className="nav-text font-oswald">Raf</h1>
-        </div>
-        <div className="flex md:p-5 gap-3 md:gap-10">
-          <a href="#" className="nav-text Clickable px-2">
+    <nav className="nav-fixed md:bg-transparent bg-black md:mx-5" ref={navRef}>
+      <div className="flex justify-between text-sm md:text-4xl font-black uppercase">
+        <div className="flex gap-2 md:gap-5">
+          <h1 className="nav-text opacity-100"><a href="#">Raf</a></h1>
+          <a href="#" className="nav-text opacity-50">
             About
           </a>
-          <a href="#" className="nav-text">
+          <a href="#" className="nav-text opacity-50">
             Project
           </a>
-          <a href="#" className="nav-text">
+          <a href="#" className="nav-text opacity-50">
             Contact
           </a>
+        </div>
+        <div>
+          <a href="#" className="nav-text mr-5 opacity-50">Let's build</a>
         </div>
       </div>
     </nav>
