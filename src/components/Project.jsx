@@ -13,10 +13,11 @@ const Project = () => {
 
     gsap.from(cards, {
       y: 100,
+      height: 0,
       ease: "power3.in",
       duration: 1,
       stagger: {
-        each: 0.1,
+        each: 0.5,
         from: "start",
       },
       scrollTrigger: {
@@ -35,12 +36,12 @@ const Project = () => {
         <h1>PROJECT</h1>
       </div>
       <div className="card-container" ref={containerRef}>
-        <div className="grid grid-cols-2 grid-rows-2 gap-2 md:gap-5">
-          <div className="col-span-2">
+        <div className="md:grid md:grid-cols-2 md:grid-rows-2 gap-2 md:gap-5">
+          <div className="md:col-span-2">
             <img
               src="./src/assets/project-1.png"
               alt="project-1"
-              className="project-card h-50 md:h-100"
+              className="project-card md:h-100"
             />
           </div>
           <img
