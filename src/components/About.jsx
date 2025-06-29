@@ -37,6 +37,7 @@ const About = () => {
         <div className="mb-5 font-light text-xs md:text-sm tracking-widest">
           <h1>ABOUT</h1>
         </div>
+        <span className="text"> This site is</span>
         <span className="text"> A simple space where I</span>
         <span className="text"> organize my work,</span>
         <span className="text"> share my progress,</span>

@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 const App = () => {
   useEffect(() => {
     const smoother = ScrollSmoother.create({
-      smooth: 2,
+      smooth: 5,
       effects: false,
       wrapper: "#wrapper-smooth",
       content: "#content-smooth",
@@ -37,7 +37,7 @@ const App = () => {
           <Home />
           <About />
           <Project />
-          {/* <Contact /> */}
+          <Contact />
         </div>
       </div>
     </>
