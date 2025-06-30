@@ -36,7 +36,7 @@ export default function Project() {
   }, []);
 
   return (
-    <section className="w-full">
+    <section className="w-full" id="project">
       <div className="text-xl md:text-5xl font-black uppercase">
         <div className="text-xs font-light mb-2 ml-5">
           <h1>project</h1>

@@ -1,6 +1,6 @@
 const Home = () => {
   return (
-    <section className="mb-52 md:mb-80">
+    <section className="mb-52 md:mb-80" id="home">
       <div className="flex justify-end items-end mb-5">
         <img src="./src/assets/profile.jpeg" alt="profile" className="w-xl" />
       </div>
