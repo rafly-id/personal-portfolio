@@ -1,69 +1,32 @@
 import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import { slideUpTextWithBgHover } from "/src/utils/gsapHover";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Project() {
-  const ctxRef = useRef(null);
+  const sectionRef = useRef(null);
 
   useLayoutEffect(() => {
-    ctxRef.current = gsap.context(() => {
-      gsap.utils.toArray(".project-item").forEach((item) => {
-        const overlay = item.querySelector(".bg-overlay");
-        const textDefault = item.querySelectorAll(".text-default");
-        const textHover = item.querySelectorAll(".project-hover");
-
-        const tlBg = gsap
-          .timeline({ paused: true })
-          .fromTo(
-            overlay,
-            { yPercent: 100 },
-            { yPercent: 0, duration: 0.5, ease: "power2.inOut" },
-            0
-          )
-          .to(
-            item,
-            {
-              backgroundColor: "#ffffff",
-              color: "#000000",
-              duration: 0.5,
-              ease: "power2.inOut",
-            },
-            0
-          );
-
-        const tlText = gsap
-          .timeline({ paused: true })
-          .to(
-            textDefault,
-            { yPercent: -100, opacity: 0, duration: 0.5, ease: "power2.inOut" },
-            0
-          )
-          .fromTo(
-            textHover,
-            { yPercent: 100, opacity: 0 },
-            { yPercent: 0, opacity: 1, duration: 0.5, ease: "power2.inOut" },
-            0
-          );
-
-        item.addEventListener("mouseenter", () => {
-          tlBg.play();
-          tlText.play();
-        });
-
-        item.addEventListener("mouseleave", () => {
-          tlBg.reverse();
-          tlText.reverse();
-        });
-      });
+    const cleanup = slideUpTextWithBgHover({
+      container: sectionRef.current,
+      itemSelector: ".project-item",
+      defaultTxtSel: ".text-default",
+      hoverTxtSel: ".project-hover",
+      overlaySel: ".bg-overlay",
+      bgColor: "#ffffff",
+      textColor: "#000000",
     });
-
-    return () => ctxRef.current.revert();
+    return cleanup;
   }, []);
 
   return (
-    <section className="pb-[100px] md:pb-[250px] w-full" id="project">
+    <section
+      ref={sectionRef}
+      className="pb-[100px] md:pb-[250px] w-full"
+      id="project"
+    >
       <div className="text-xl md:text-5xl font-black uppercase">
         <div className="text-xs font-light mb-2 ml-5">
           <h1>project</h1>

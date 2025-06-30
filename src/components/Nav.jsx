@@ -2,6 +2,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef, useEffect } from "react";
 import ScrollSmoother from "gsap/ScrollSmoother";
+import { slideUpTextHover } from "/src/utils/gsapHover";
 
 const Nav = () => {
   const navRef = useRef(null);
@@ -17,35 +18,13 @@ const Nav = () => {
   }, []);
 
   useEffect(() => {
-    const items = navRef.current.querySelectorAll(".nav-text:not(.nav-hover)");
-
-    items.forEach((item) => {
-      const defaultTxt = item.querySelector(".text-default");
-      const hoverTxt = item.querySelector(".nav-hover");
-
-      const tl = gsap.timeline({ paused: true });
-      tl.to(
-        defaultTxt,
-        { yPercent: -100, opacity: 0, duration: 0.3, ease: "power2.inOut" },
-        0
-      ).fromTo(
-        hoverTxt,
-        { yPercent: 100, opacity: 0 },
-        { yPercent: 0, opacity: 1, duration: 0.3, ease: "power2.inOut" },
-        0
-      );
-
-      item.addEventListener("mouseenter", () => tl.play());
-      item.addEventListener("mouseleave", () => tl.reverse());
+    const cleanup = slideUpTextHover({
+      container: navRef.current,
+      itemSelector: ".nav-text:not(.nav-hover)",
+      defaultTxtSel: ".text-default",
+      hoverTxtSel: ".nav-hover",
     });
-
-    // cleanup
-    return () => {
-      items.forEach((item) => {
-        item.removeEventListener("mouseenter", () => {});
-        item.removeEventListener("mouseleave", () => {});
-      });
-    };
+    return cleanup;
   }, []);
 
   const handleScroll = (target) => {
