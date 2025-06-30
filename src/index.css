@@ -18,4 +18,28 @@
   .nav-fixed {
     @apply fixed top-0 left-0 w-full z-50;
   }
+  .nav-text {
+    @apply relative overflow-hidden;
+  }
+  .nav-text.no-hover .text-default {
+    @apply opacity-100;
+  }
+  .nav-hover {
+    @apply absolute top-0 left-0;
+  }
+
+  .project-item {
+    @apply relative overflow-hidden bg-transparent text-putih;
+  }
+  .bg-overlay {
+    @apply absolute inset-0 bg-white;
+    transform: translateY(100%);
+  }
+  .project-text {
+    @apply relative overflow-hidden;
+  }
+  .project-hover {
+    @apply absolute top-0 left-0;
+    color: #000;
+  }
 }
