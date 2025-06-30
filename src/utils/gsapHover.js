@@ -41,6 +41,9 @@ export function slideUpTextHover({
     item.addEventListener("mouseleave", () => {
       tl.reverse();
       onLeave?.(item, tl);
+      tl.eventCallback("onReverseComplete", () => {
+        gsap.set([defaultTxt, hoverTxt], { clearProps: "transform,opacity" });
+      });
     });
   });
 
