@@ -1,9 +1,5 @@
 import Nav from "./components/Nav";
-import Home from "./components/Home";
-import About from "./components/About";
-import Technologies from "./components/Technologies";
-import Project from "./components/Project";
-import Contact from "./components/Contact";
+import Home from "./pages/Home";
 
 import gsap from "gsap";
 import { useEffect } from "react";
@@ -36,10 +32,6 @@ const App = () => {
       <div id="wrapper-smooth">
         <div id="content-smooth">
           <Home />
-          <About />
-          <Technologies />
-          <Project />
-          <Contact />
         </div>
       </div>
     </>
