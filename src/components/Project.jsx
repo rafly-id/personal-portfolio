@@ -1,31 +1,14 @@
 import { useRef, useLayoutEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
 import { slideUpTextWithBgHover } from "/src/utils/gsapHover";
-import { useGSAP } from "@gsap/react";
-
-gsap.registerPlugin(ScrollTrigger);
+import { useScrollAnimation } from "../utils/scrollAnimation";
 
 export default function Project() {
   const sectionRef = useRef(null);
 
-  useGSAP(() => {
-    const items = sectionRef.current.querySelectorAll(".project-item");
-    gsap.from(items, {
-      opacity: 0,
-      y: 25,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power2.inOut",
-      scrollTrigger: {
-        scroller: "#wrapper-smooth",
-        trigger: sectionRef.current,
-        start: "top center",
-        end: "top center",
-        toggleActions: "play none reverse none"
-      },
-    });
-  }, []);
+  useScrollAnimation({
+    ref: sectionRef,
+    itemSelector: ".project-item",
+  });
 
   useLayoutEffect(() => {
     const cleanup = slideUpTextWithBgHover({

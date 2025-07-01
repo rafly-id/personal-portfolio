@@ -1,31 +1,25 @@
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/all";
 import { useRef } from "react";
-
-gsap.registerPlugin(ScrollTrigger);
+import { useScrollAnimation } from "../utils/scrollAnimation";
 
 const About = () => {
   const containerRef = useRef(null);
 
-  useGSAP(() => {
-    const texts = containerRef.current.querySelectorAll(".text");
-    gsap.from(texts, {
+  useScrollAnimation({
+    ref: containerRef,
+    itemSelector: ".text",
+    varsFn: (texts) => ({
       opacity: 0.1,
       y: 10,
       stagger: {
         each: 0.2,
         amount: texts.length * 0.2,
       },
-      ease: "power3.inOut",
-      scrollTrigger: {
-        scroller: "#wrapper-smooth",
-        trigger: containerRef.current,
-        start: "top center",
-        end: "250px center",
-        scrub: 1,
-      },
-    });
+    }),
+    triggerOptions: {
+      start: "top center",
+      end: "250px center",
+      scrub: 1,
+    },
   });
 
   return (
