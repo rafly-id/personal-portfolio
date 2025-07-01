@@ -1,12 +1,13 @@
 import Nav from "./components/Nav";
 import Home from "./components/Home";
+import About from "./components/About";
+import Technologies from "./components/Technologies";
 import Project from "./components/Project";
 import Contact from "./components/Contact";
 
 import gsap from "gsap";
 import { useEffect } from "react";
 import { ScrollTrigger, ScrollSmoother } from "gsap/all";
-import About from "./components/About";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -36,6 +37,7 @@ const App = () => {
         <div id="content-smooth">
           <Home />
           <About />
+          <Technologies />
           <Project />
           <Contact />
         </div>

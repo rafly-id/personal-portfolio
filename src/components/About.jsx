@@ -1,6 +1,25 @@
 import { useRef } from "react";
 import { useScrollAnimation } from "../utils/scrollAnimation";
 
+const aboutTexts = [
+  "This site is",
+  "A simple space where I",
+  "organize my work,",
+  "share my progress,",
+  "and record my journey.",
+  "It's not about showing off, but about sharing",
+  "stories of ideas,",
+  "mistakes,",
+  "and small meaningful steps.",
+  "Here, I show how I",
+  "learn,",
+  "create,",
+  "and keep moving forward—",
+  "not perfect, but genuine.",
+  "Maybe you'll find something here, maybe you won't. There's more to come, and I'm excited to keep going.",
+  "This is me and my journey.",
+];
+
 const About = () => {
   const containerRef = useRef(null);
 
@@ -19,6 +38,7 @@ const About = () => {
       start: "top center",
       end: "250px center",
       scrub: 1,
+      toggleAction: "play none reverse none"
     },
   });
 
@@ -32,27 +52,11 @@ const About = () => {
         <div className="mb-5 font-light text-xs md:text-sm tracking-widest">
           <h1>ABOUT</h1>
         </div>
-        <span className="text"> This site is</span>
-        <span className="text"> A simple space where I</span>
-        <span className="text"> organize my work,</span>
-        <span className="text"> share my progress,</span>
-        <span className="text"> and record my journey. </span>
-        <span className="text">
-          It's not about showing off, but about sharing
-        </span>
-        <span className="text"> stories of ideas,</span>
-        <span className="text"> mistakes,</span>
-        <span className="text"> and small meaningful steps.</span>
-        <span className="text"> Here, I show how I</span>
-        <span className="text"> learn,</span>
-        <span className="text"> create,</span>
-        <span className="text"> and keep moving forward—</span>
-        <span className="text"> not perfect, but genuine. </span>
-        <span className="text">
-          Maybe you'll find something here, maybe you won't. There's more to
-          come, and I'm excited to keep going.
-        </span>
-        <span className="text">This is me and my journey.</span>
+        {aboutTexts.map((text, index) => (
+          <span className="text" key={index}>
+            {text}
+          </span>
+        ))}
       </div>
     </section>
   );

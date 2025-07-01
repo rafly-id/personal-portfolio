@@ -25,7 +25,6 @@ export function useScrollAnimation({ ref, itemSelector = '.animate-item', gsapVa
         trigger: ref.current,
         start: 'top center',
         end: 'top center',
-        toggleActions: 'play none reverse none',
         ...triggerOptions,
       },
       // Apply dynamic or static props
