@@ -32,7 +32,7 @@
     @apply relative overflow-hidden bg-transparent text-putih;
   }
   .bg-overlay {
-    @apply absolute inset-0 bg-white;
+    @apply absolute inset-0 bg-putih;
     transform: translateY(100%);
   }
   .project-text {
@@ -40,6 +40,6 @@
   }
   .project-hover {
     @apply absolute top-0 left-0;
-    color: #000;
+    color: black;
   }
 }

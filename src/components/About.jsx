@@ -11,7 +11,7 @@ const About = () => {
   useGSAP(() => {
     const texts = containerRef.current.querySelectorAll(".text");
     gsap.from(texts, {
-      opacity: 0,
+      opacity: 0.1,
       y: 10,
       stagger: {
         each: 0.2,

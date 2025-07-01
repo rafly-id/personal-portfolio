@@ -2,11 +2,30 @@ import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { slideUpTextWithBgHover } from "/src/utils/gsapHover";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Project() {
   const sectionRef = useRef(null);
+
+  useGSAP(() => {
+    const items = sectionRef.current.querySelectorAll(".project-item");
+    gsap.from(items, {
+      opacity: 0,
+      y: 25,
+      duration: 1,
+      stagger: 0.2,
+      ease: "power2.inOut",
+      scrollTrigger: {
+        scroller: "#wrapper-smooth",
+        trigger: sectionRef.current,
+        start: "top center",
+        end: "top center",
+        toggleActions: "play none reverse none"
+      },
+    });
+  }, []);
 
   useLayoutEffect(() => {
     const cleanup = slideUpTextWithBgHover({
@@ -48,14 +67,14 @@ export default function Project() {
               <div className="project-text relative overflow-hidden z-10">
                 <span className="text-default block">{label}</span>
                 <span className="project-hover absolute top-0 left-0 block">
-                  See Site
+                  {label}
                 </span>
               </div>
 
               <div className="project-text relative overflow-hidden z-10">
                 <span className="text-default block">project</span>
                 <span className="project-hover absolute top-0 left-0 block">
-                  project
+                  See Site
                 </span>
               </div>
             </div>
