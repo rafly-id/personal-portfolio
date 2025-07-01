@@ -23,6 +23,14 @@ export default function Project() {
     return cleanup;
   }, []);
 
+  const projects = [
+    { label: "Movie App", url: "https://example.com/movie" },
+    { label: "Awward App", url: "https://example.com/awward" },
+    { label: "Portofolio App", url: "https://example.com/portofolio" },
+    { label: "Todo App", url: "https://example.com/todo" },
+    { label: "Final Exam App", url: "https://example.com/final-exam" },
+  ];
+
   return (
     <section
       ref={sectionRef}
@@ -34,23 +42,20 @@ export default function Project() {
           <h1>project</h1>
         </div>
         <div>
-          {[
-            "Movie App",
-            "Awward App",
-            "Portofolio App",
-            "Todo App",
-            "Final Exam App",
-          ].map((label) => (
-            <div
-              key={label}
+          {projects.map((project) => (
+            <a
+              key={project.label}
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="project-item relative flex border-b py-3 md:py-5 justify-between cursor-pointer overflow-hidden"
             >
               <div className="bg-overlay"></div>
 
               <div className="project-text relative overflow-hidden z-10">
-                <span className="text-default block">{label}</span>
+                <span className="text-default block">{project.label}</span>
                 <span className="project-hover absolute top-0 left-0 block">
-                  {label}
+                  {project.label}
                 </span>
               </div>
 
@@ -60,7 +65,7 @@ export default function Project() {
                   See Site
                 </span>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>

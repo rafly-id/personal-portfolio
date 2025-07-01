@@ -3,9 +3,11 @@ import { useGSAP } from "@gsap/react";
 import { useRef, useEffect } from "react";
 import ScrollSmoother from "gsap/ScrollSmoother";
 import { slideUpTextHover } from "/src/utils/gsapHover";
+import { Link, useLocation } from "react-router-dom";
 
 const Nav = () => {
   const navRef = useRef(null);
+  const location = useLocation();
 
   useGSAP(() => {
     const items = navRef.current.querySelectorAll(".nav-text");
@@ -32,9 +34,30 @@ const Nav = () => {
     if (smoother) smoother.scrollTo(target, true, "center center");
   };
 
-  const NavLink = ({ href, label, active = false }) => {
-    const extraClasses = active ? "nav-hover" : "";
-    const defaultOpacity = active ? "opacity-100" : "opacity-30";
+  const NavLink = ({ href, label }) => {
+    const isRoute = href.startsWith("/");
+    const isActiveRoute = isRoute && location.pathname === href;
+    const extraClasses = isActiveRoute ? "nav-hover" : "";
+    const defaultOpacity = isActiveRoute ? "opacity-100" : "opacity-30";
+
+    if (isRoute) {
+      return (
+        <div
+          className={`nav-text relative overflow-hidden cursor-pointer ${extraClasses}`}
+        >
+          <Link to={href} className="block">
+            <span className={`text-default block ${defaultOpacity}`}>
+              {label}
+            </span>
+            {!isActiveRoute && (
+              <span className="nav-hover absolute top-0 left-0 block opacity-0">
+                {label}
+              </span>
+            )}
+          </Link>
+        </div>
+      );
+    }
 
     return (
       <div
@@ -51,7 +74,7 @@ const Nav = () => {
           <span className={`text-default block ${defaultOpacity}`}>
             {label}
           </span>
-          {!active && (
+          {!extraClasses && (
             <span className="nav-hover absolute top-0 left-0 block opacity-0">
               {label}
             </span>
@@ -65,9 +88,9 @@ const Nav = () => {
     <nav className="nav-fixed md:bg-transparent bg-black md:mx-5" ref={navRef}>
       <div className="flex justify-between text-sm md:text-4xl font-black uppercase">
         <div className="flex gap-2 md:gap-5">
-          <NavLink href="#home" label="Raf" active />
+          <NavLink href="/" label="Raf" />
           <NavLink href="#about" label="About" />
-          <NavLink href="#project" label="Project" />
+          <NavLink href="/work" label="Project" />
           <NavLink href="#contact" label="Contact" />
         </div>
         <div className="mr-5">

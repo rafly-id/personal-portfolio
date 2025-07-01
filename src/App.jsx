@@ -1,9 +1,11 @@
-import Nav from "./components/Nav";
-import Home from "./pages/Home";
-
 import { useEffect, useRef } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger, ScrollSmoother } from "gsap/all";
+
+import Nav from "./components/Nav";
+import Home from "./pages/Home";
+import Work from "./pages/Work";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -45,7 +47,7 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <BrowserRouter>
       <Nav />
       <div
         ref={cursorRef}
@@ -56,10 +58,13 @@ const App = () => {
       />
       <div id="wrapper-smooth">
         <div id="content-smooth">
-          <Home />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/work" element={<Work />} />
+          </Routes>
         </div>
       </div>
-    </>
+    </BrowserRouter>
   );
 };
 
