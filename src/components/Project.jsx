@@ -17,8 +17,8 @@ export default function Project() {
       defaultTxtSel: ".text-default",
       hoverTxtSel: ".project-hover",
       overlaySel: ".bg-overlay",
-      bgColor: "#ffffff",
-      textColor: "#000000",
+      textColor: "#ffffff",
+      bgColor: "#000000",
     });
     return cleanup;
   }, []);

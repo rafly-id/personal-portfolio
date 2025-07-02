@@ -17,7 +17,7 @@ const Nav = () => {
       ease: "power2.inOut",
       stagger: { each: 0.1, from: "start" },
     });
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     const cleanup = slideUpTextHover({
@@ -27,7 +27,7 @@ const Nav = () => {
       hoverTxtSel: ".nav-hover",
     });
     return cleanup;
-  }, []);
+  }, [location.pathname]);
 
   const handleScroll = (target) => {
     const smoother = ScrollSmoother.get();
@@ -85,7 +85,7 @@ const Nav = () => {
   };
 
   return (
-    <nav className="nav-fixed md:bg-transparent bg-black md:mx-5" ref={navRef}>
+    <nav className="nav-fixed md:bg-transparent bg-white md:mx-5" ref={navRef}>
       <div className="flex justify-between text-sm md:text-4xl font-black uppercase">
         <div className="flex gap-2 md:gap-5">
           <NavLink href="/" label="Raf" />

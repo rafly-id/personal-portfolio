@@ -10,7 +10,7 @@
 
 @layer base {
   body {
-    @apply bg-black text-putih font-roboto;
+    @apply bg-putih text-black font-roboto;
   }
 }
 
@@ -29,10 +29,10 @@
   }
 
   .project-item {
-    @apply relative overflow-hidden bg-transparent text-putih;
+    @apply relative overflow-hidden bg-transparent text-black;
   }
   .bg-overlay {
-    @apply absolute inset-0 bg-putih;
+    @apply absolute inset-0 bg-black;
     transform: translateY(100%);
   }
   .project-text {
@@ -40,6 +40,6 @@
   }
   .project-hover {
     @apply absolute top-0 left-0;
-    color: black;
+    color: white;
   }
 }

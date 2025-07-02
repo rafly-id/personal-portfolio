@@ -22,7 +22,7 @@ const Technologies = () => {
           <h1>Technologies</h1>
         </div>
         <div className="text">
-          Javascript / Tailwindcss / React / GSAP / Vercel
+          Javascript / Tailwindcss / React / GSAP / Vercel / GIT
         </div>
       </div>
     </section>

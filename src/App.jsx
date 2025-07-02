@@ -52,7 +52,7 @@ const App = () => {
       <div
         ref={cursorRef}
         className="hidden md:block fixed top-0 left-0 w-5 h-5 rounded-full
-          bg-white/25 backdrop-blur-sm
+          bg-black/25 backdrop-blur-sm
           z-[9999] pointer-events-none
           transform -translate-x-1/2 -translate-y-1/2"
       />

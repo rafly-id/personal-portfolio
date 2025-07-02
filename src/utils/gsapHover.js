@@ -62,8 +62,8 @@ export function slideUpTextWithBgHover({
   defaultTxtSel,
   hoverTxtSel,
   overlaySel, // selector overlay
-  bgColor = "#d3d0d7",
-  textColor = "#000",
+  textColor = "#d3d0d7",
+  bgColor = "#000",
   ease = "power2.inOut",
   durationBg = 0.3,
   durationText = 0.3,

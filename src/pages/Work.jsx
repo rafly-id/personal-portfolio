@@ -1,3 +1,5 @@
+import { useRef } from "react";
+
 import WorkCard from "../components/WorkCard";
 import Contact from "../components/Contact";
 import project1 from "../assets/project-1.png";
@@ -5,6 +7,8 @@ import project2 from "../assets/project-2.png";
 import project3 from "../assets/project-3.png";
 import project4 from "../assets/project-4.png";
 import project5 from "../assets/project-5.png";
+
+import { useScrollAnimation } from "../utils/scrollAnimation";
 
 const projects = [
   {
@@ -40,20 +44,32 @@ const projects = [
 ];
 
 const Work = () => {
+  const sectionRef = useRef(null);
+  const containerRef = useRef(null);
+  useScrollAnimation({
+    ref: sectionRef,
+    itemSelector: ".text-ani",
+  });
+
   return (
-    <section className="mx-5 md:mx-20 mt-20 md:mt-52">
+    <section className="mx-5 md:mx-20 mt-20 md:mt-52" ref={sectionRef}>
       <div
-        className="w-full mb-10 border-b py-10 grid md:grid-cols-2 items-center uppercase font-light -tracking-widest"
+        className="w-full mb-10 border-b py-10 grid md:grid-cols-2 items-center uppercase font-light -tracking-wider"
         id="about"
       >
-        <div className="text-2xl md:text-8xl font-oswald">My Project</div>
-        <div className="text-sm md:text-lg">
+        <div className="text-ani text-2xl md:text-8xl font-oswald">
+          My Project
+        </div>
+        <div className="text-ani text-sm md:text-lg">
           Discover further information about this project, such as the project
           name, the tools and technologies behind it, a representative image,
           and a link that will take you directly to the project page or source.
         </div>
       </div>
-      <div className="grid md:grid-cols-2 justify-between items-center gap-10">
+      <div
+        className="grid md:grid-cols-2 justify-between items-center gap-10"
+        ref={containerRef}
+      >
         {projects.map((project, idx) => (
           <WorkCard key={project.title + idx} {...project} />
         ))}
