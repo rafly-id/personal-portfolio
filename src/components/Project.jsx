@@ -35,7 +35,6 @@ export default function Project() {
     <section
       ref={sectionRef}
       className="pb-[100px] md:pb-[250px] w-full"
-      id="project"
     >
       <div className="text-xl md:text-5xl font-black uppercase">
         <div className="text-xs font-light mb-2 ml-5">

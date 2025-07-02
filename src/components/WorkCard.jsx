@@ -5,7 +5,7 @@ const WorkCard = ({ title, technology, img, link }) => {
         <img
           src={img}
           alt={title}
-          className="object-cover rounded-xl"
+          className="object-cover"
         />
 
         <div className="py-5">

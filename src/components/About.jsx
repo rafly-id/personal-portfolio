@@ -46,7 +46,6 @@ const About = () => {
     <section
       className="pb-[100px] md:pb-[250px] md:mx-20 mx-5 -tracking-wider md:-tracking-widest"
       ref={containerRef}
-      id="about"
     >
       <div className="text-center text-xl md:text-5xl font-black uppercase">
         <div className="mb-5 font-light text-xs md:text-sm tracking-widest">

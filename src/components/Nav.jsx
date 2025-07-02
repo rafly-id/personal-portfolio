@@ -89,12 +89,9 @@ const Nav = () => {
       <div className="flex justify-between text-sm md:text-4xl font-black uppercase">
         <div className="flex gap-2 md:gap-5">
           <NavLink href="/" label="Raf" />
-          <NavLink href="#about" label="About" />
           <NavLink href="/work" label="Project" />
           <NavLink href="#contact" label="Contact" />
-        </div>
-        <div className="mr-5">
-          <NavLink href="#contact" label="Let's build" />
+          <NavLink href="mailto:muhr0417@gmail.com" label="Let's build" />
         </div>
       </div>
     </nav>
