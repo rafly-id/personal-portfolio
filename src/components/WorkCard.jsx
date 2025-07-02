@@ -10,9 +10,9 @@ const WorkCard = ({ title, technology, img, link }) => {
 
         <div className="py-5">
           <h3 className="mb-5">{title}</h3>
-          <div className="gap-5 flex">
+          <div className="gap-5 md:flex">
             {technology.map((tech, idx) => (
-              <span key={idx} className="border px-5 rounded-xl">
+              <span key={idx} className="border px-3 md:px-5 rounded-xl">
                 {tech}
               </span>
             ))}

@@ -24,11 +24,11 @@ export default function Project() {
   }, []);
 
   const projects = [
-    { label: "Movie App", url: "https://example.com/movie" },
-    { label: "Awward App", url: "https://example.com/awward" },
-    { label: "Portofolio App", url: "https://example.com/portofolio" },
-    { label: "Todo App", url: "https://example.com/todo" },
-    { label: "Final Exam App", url: "https://example.com/final-exam" },
+    { label: "Movie App", url: "https://rafly-id-try-movie-app.vercel.app/" },
+    { label: "Awward App", url: "https://example.com/awward" }, // belum
+    { label: "Portofolio App", url: "https://example.com/portofolio" }, // belum
+    { label: "Todo App", url: "https://id-camp-todoapps.vercel.app/" },
+    { label: "Final Exam App", url: "https://web-client-uas-raflylucky.vercel.app/" },
   ];
 
   return (

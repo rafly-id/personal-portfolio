@@ -13,33 +13,33 @@ import { useScrollAnimation } from "../utils/scrollAnimation";
 const projects = [
   {
     title: "Movie App",
-    technology: ["React", "Tailwind"],
+    technology: ["React", "Tailwind" , "Appwrite" , "Vite" , "Vercel"],
     img: project1,
-    link: "https://github.com/rafly",
+    link: "https://rafly-id-try-movie-app.vercel.app/",
   },
   {
     title: "Awward App",
-    technology: ["React", "Tailwind"],
+    technology: ["React", "Tailwind" , "GSAP" , "Vite" , "Vercel"],
     img: project2,
-    link: "https://github.com/rafly",
+    link: "https://github.com/rafly", // belum
   },
   {
     title: "Portofolio App",
-    technology: ["React", "Tailwind"],
+    technology: ["React", "Tailwind" , "GSAP" , "Vite" , "Vercel"],
     img: project3,
-    link: "https://github.com/rafly",
+    link: "https://github.com/rafly", // belum
   },
   {
     title: "Todo App",
-    technology: ["React", "Tailwind"],
+    technology: ["HTML", "CSS" , "Javascript"],
     img: project4,
-    link: "https://github.com/rafly",
+    link: "https://id-camp-todoapps.vercel.app/",
   },
   {
     title: "Final Exam App",
-    technology: ["React", "Tailwind"],
+    technology: ["HTML", "CSS"],
     img: project5,
-    link: "https://github.com/rafly",
+    link: "https://web-client-uas-raflylucky.vercel.app/",
   },
 ];
 
@@ -52,7 +52,7 @@ const Work = () => {
   });
 
   return (
-    <section className="mx-5 md:mx-20 mt-20 md:mt-52" ref={sectionRef}>
+    <section className="mx-5 md:mx-20 mt-10 md:mt-20" ref={sectionRef}>
       <div
         className="w-full mb-10 border-b py-10 grid md:grid-cols-2 items-center uppercase font-light -tracking-wider"
         id="about"
