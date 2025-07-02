@@ -21,13 +21,13 @@ const projects = [
     title: "Awward App",
     technology: ["React", "Tailwind", "GSAP", "Vite", "Vercel"],
     img: project2,
-    link: "https://github.com/rafly", // belum
+    link: "https://github.com/rafly", // link to awward website
   },
   {
     title: "Portofolio App",
     technology: ["React", "Tailwind", "GSAP", "Vite", "Vercel"],
     img: project3,
-    link: "https://github.com/rafly", // belum
+    link: "https://github.com/rafly", // link to portofolio website
   },
   {
     title: "Todo App",

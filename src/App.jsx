@@ -1,19 +1,35 @@
 import { useEffect, useRef } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger, ScrollSmoother } from "gsap/all";
 
 import Nav from "./components/Nav";
-import Home from "./pages/Home";
-import Work from "./pages/Work";
+import Home from "./views/Home";
+import Work from "./views/Work";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
+const ScrollToTopOnRouteChange = ({ smootherRef }) => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    if (smootherRef.current) {
+      smootherRef.current.scrollTo(0, 0, { duration: 0 });
+      ScrollTrigger.refresh();
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname]);
+  return null;
+};
+
 const App = () => {
   const cursorRef = useRef(null);
+  const smootherRef = useRef(null);
 
   useEffect(() => {
-    const smoother = ScrollSmoother.create({
+    if (typeof window !== "undefined" && window.innerWidth < 768) return;
+
+    smootherRef.current = ScrollSmoother.create({
       smooth: 5,
       effects: false,
       wrapper: "#wrapper-smooth",
@@ -21,13 +37,8 @@ const App = () => {
     });
     setTimeout(() => ScrollTrigger.refresh(), 100);
 
-    if (typeof window !== "undefined" && window.innerWidth < 768) {
-      return;
-    }
-
     const cursor = cursorRef.current;
     if (!cursor) return;
-
     const onMouseMove = (e) => {
       gsap.to(cursor, {
         x: e.clientX,
@@ -36,12 +47,11 @@ const App = () => {
         ease: "power2.out",
       });
     };
-
     window.addEventListener("mousemove", onMouseMove);
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
-      smoother.kill();
+      smootherRef.current.kill();
       ScrollTrigger.killAll();
     };
   }, []);
@@ -49,6 +59,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Nav />
+      <ScrollToTopOnRouteChange smootherRef={smootherRef} />
       <div
         ref={cursorRef}
         className="hidden md:block fixed top-0 left-0 w-5 h-5 rounded-full
