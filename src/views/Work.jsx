@@ -74,7 +74,7 @@ const Work = () => {
           ))}
         </div>
       </section>
-      <div className="mt-20 pb-10 md:pb-20">
+      <div className="mt-20 pb-10 md:pb-40">
         <Contact />
       </div>
     </>
