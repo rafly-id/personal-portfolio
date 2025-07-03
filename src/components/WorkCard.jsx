@@ -1,11 +1,11 @@
 const WorkCard = ({ title, technology, img, link }) => {
   return (
-    <div className="card max-w-2xl uppercase font-light -tracking-wider">
+    <div className="card uppercase font-light -tracking-wider">
       <a href={link} target="_blank" rel="noopener noreferrer">
         <img
           src={img}
           alt={title}
-          className="object-cover"
+          className="object-cover filter grayscale hover:grayscale-0 transition-all duration-500 md:opacity-80 md:hover:opacity-100"
         />
 
         <div className="py-5">

@@ -46,32 +46,29 @@ const projects = [
 const Work = () => {
   const sectionRef = useRef(null);
   const containerRef = useRef(null);
+
   useScrollAnimation({
     ref: sectionRef,
     itemSelector: ".text-ani",
+    options: {
+      x: 500,
+      y: 0,
+      duration: 2,
+    }
   });
 
   return (
     <>
-      <section className="mx-5 md:mx-20 mt-10 md:mt-20" ref={sectionRef}>
+      <section className="mx-5 mt-10 md:mt-40" ref={sectionRef}>
         <div
           className="w-full mb-10 border-b py-10 grid md:grid-cols-2 items-center uppercase font-light -tracking-wider"
           id="about"
         >
-          <div className="text-ani text-2xl md:text-8xl font-oswald">
+          <div className="text-ani text-5xl md:text-9xl font-oswald -tracking-wider">
             My Project
           </div>
-          <div className="text-ani text-sm md:text-lg">
-            Discover further information about this project, such as the project
-            name, the tools and technologies behind it, a representative image,
-            and a link that will take you directly to the project page or
-            source.
-          </div>
         </div>
-        <div
-          className="grid md:grid-cols-2 justify-between items-center gap-10"
-          ref={containerRef}
-        >
+        <div className="grid md:grid-cols-2 gap-2" ref={containerRef}>
           {projects.map((project, idx) => (
             <WorkCard key={project.title + idx} {...project} />
           ))}

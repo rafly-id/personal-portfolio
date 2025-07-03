@@ -6,11 +6,12 @@
   --font-oswald: "Oswald";
   --font-roboto: "Roboto";
   --color-putih: #d3d0d7;
+  --color-hitam: #212121;
 }
 
 @layer base {
   body {
-    @apply bg-putih text-black font-roboto;
+    @apply bg-putih text-hitam font-roboto;
   }
 }
 
@@ -32,7 +33,7 @@
     @apply relative overflow-hidden bg-transparent text-black;
   }
   .bg-overlay {
-    @apply absolute inset-0 bg-black;
+    @apply absolute inset-0 bg-hitam;
     transform: translateY(100%);
   }
   .project-text {
@@ -40,6 +41,6 @@
   }
   .project-hover {
     @apply absolute top-0 left-0;
-    color: white;
+    color: #d3d0d7;
   }
 }

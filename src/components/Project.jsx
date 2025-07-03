@@ -17,8 +17,8 @@ export default function Project() {
       defaultTxtSel: ".text-default",
       hoverTxtSel: ".project-hover",
       overlaySel: ".bg-overlay",
-      textColor: "#ffffff",
-      bgColor: "#000000",
+      textColor: "#d3d0d7",
+      bgColor: "#212121",
     });
     return cleanup;
   }, []);
@@ -28,14 +28,14 @@ export default function Project() {
     { label: "Awward App", url: "https://example.com/awward" }, // link to awward website
     { label: "Portofolio App", url: "https://example.com/portofolio" }, // link to protofolio website
     { label: "Todo App", url: "https://id-camp-todoapps.vercel.app/" },
-    { label: "Final Exam App", url: "https://web-client-uas-raflylucky.vercel.app/" },
+    {
+      label: "Final Exam App",
+      url: "https://web-client-uas-raflylucky.vercel.app/",
+    },
   ];
 
   return (
-    <section
-      ref={sectionRef}
-      className="pb-[100px] md:pb-[250px] w-full"
-    >
+    <section ref={sectionRef} className="pb-[100px] md:pb-[250px] w-full">
       <div className="text-xl md:text-5xl font-black uppercase">
         <div className="text-xs font-light mb-2 ml-5">
           <h1>project</h1>
