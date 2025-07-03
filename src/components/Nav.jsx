@@ -1,6 +1,6 @@
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useRef, useEffect } from "react";
 import ScrollSmoother from "gsap/ScrollSmoother";
 import { slideUpTextHover } from "/src/utils/gsapHover";
 import { Link, useLocation } from "react-router-dom";
@@ -36,6 +36,8 @@ const Nav = () => {
 
   const NavLink = ({ href, label }) => {
     const isRoute = href.startsWith("/");
+    const isAnchor = href.startsWith("#");
+    const isMailto = href.startsWith("mailto:");
     const isActiveRoute = isRoute && location.pathname === href;
     const extraClasses = isActiveRoute ? "nav-hover" : "";
     const defaultOpacity = isActiveRoute ? "opacity-100" : "opacity-30";
@@ -59,17 +61,42 @@ const Nav = () => {
       );
     }
 
+    if (isAnchor) {
+      return (
+        <div
+          className={`nav-text relative overflow-hidden cursor-pointer ${extraClasses}`}
+        >
+          <a
+            href={href}
+            onClick={(e) => {
+              e.preventDefault();
+              handleScroll(href);
+            }}
+            className="block"
+          >
+            <span className={`text-default block ${defaultOpacity}`}>
+              {label}
+            </span>
+            {!extraClasses && (
+              <span className="nav-hover absolute top-0 left-0 block opacity-0">
+                {label}
+              </span>
+            )}
+          </a>
+        </div>
+      );
+    }
+
+    // External dan mailto: biarkan default browser menangani
     return (
       <div
         className={`nav-text relative overflow-hidden cursor-pointer ${extraClasses}`}
       >
         <a
           href={href}
-          onClick={(e) => {
-            e.preventDefault();
-            handleScroll(href);
-          }}
           className="block"
+          target={isMailto ? undefined : "_blank"}
+          rel={isMailto ? undefined : "noopener noreferrer"}
         >
           <span className={`text-default block ${defaultOpacity}`}>
             {label}
