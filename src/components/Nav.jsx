@@ -85,14 +85,17 @@ const Nav = () => {
   };
 
   return (
-    <nav className="nav-fixed md:bg-transparent bg-white md:mx-5 -tracking-widest" ref={navRef}>
+    <nav
+      className="nav-fixed bg-hitam text-putih px-5 -tracking-widest"
+      ref={navRef}
+    >
       <div className="flex justify-between text-sm md:text-4xl font-black uppercase">
         <div className="flex gap-2 md:gap-5">
           <NavLink href="/" label="Raf" />
           <NavLink href="/work" label="Project" />
           <NavLink href="#contact" label="Contact" />
-          <NavLink href="mailto:muhr0417@gmail.com" label="Let's build" />
         </div>
+        <NavLink href="mailto:muhr0417@gmail.com" label="Let's build" />
       </div>
     </nav>
   );
