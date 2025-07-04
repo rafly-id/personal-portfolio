@@ -1,6 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import ScrollSmoother from "gsap/ScrollSmoother";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,23 +18,25 @@ export function useScrollAnimation({
     const items = ref.current.querySelectorAll(itemSelector);
     const animationVars = varsFn ? varsFn(items) : gsapVars;
 
+    const smoother = ScrollSmoother.get();
+    const scrollerOption = smoother
+      ? { scroller: "#wrapper-smooth" }
+      : {};
+
     gsap.from(items, {
-      // Default animation properties
       opacity: 0,
       y: 25,
       duration: 1,
       stagger: 0.5,
       ease: "power2.inOut",
       ...options,
-      // Merge ScrollTrigger options
       scrollTrigger: {
-        scroller: "#wrapper-smooth",
         trigger: ref.current,
         start: "top center",
         end: "top center",
+        ...scrollerOption,
         ...triggerOptions,
       },
-      // Apply dynamic or static props
       ...animationVars,
     });
   }, []);
