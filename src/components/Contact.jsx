@@ -38,7 +38,7 @@ const Contact = () => {
       <h1 className="text-xs font-light mb-2 ml-5">Contact</h1>
 
       <nav ref={navRef} aria-label="Contact Navigation" className="border-t">
-        <div className="flex justify-between items-center mx-5 mt-5 text-sm font-light -tracking-wider">
+        <div className="flex justify-between items-center mx-5 mt-5 text-xs md:text-sm font-light -tracking-wider">
           <div className="flex flex-col space-y-2">
             {primaryLinks.map(({ href, label }) => (
               <div
@@ -56,11 +56,11 @@ const Contact = () => {
           </div>
 
           <div className="flex items-center space-x-2 mt-4 md:mt-0">
-            <span className="font-light">Build with me</span>
+            <span className="font-light text-xs md:text-sm">Build with me</span>
             <div className="relative overflow-hidden contact-hover cursor-pointer">
               <a
                 href="mailto:muhr0417@gmail.com"
-                className="block relative text-3xl font-black -tracking-widest hover:underline"
+                className="block relative text-2xl md:text-4xl font-black -tracking-widest hover:underline"
               >
                 <span className="text-default block">Let's Chat</span>
                 <span className="nav-hover absolute top-0 left-0 block opacity-0">
@@ -70,7 +70,7 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="flex flex-col space-y-1 mt-4 md:mt-0">
+          <div className="flex flex-col space-y-1 mt-4 md:mt-0 text-xs md:text-sm">
             {socialLinks.map(({ href, label }) => (
               <div
                 key={href}
@@ -99,7 +99,7 @@ const Contact = () => {
             type="button"
             onClick={handleBackToTop}
             aria-label="Kembali ke atas halaman"
-            className="text-7xl md:text-9xl font-black -tracking-widest hover:underline"
+            className="text-6xl md:text-9xl font-black -tracking-widest hover:underline"
           >
             Back To Top
           </button>

@@ -31,7 +31,13 @@ const Nav = () => {
 
   const handleScroll = (target) => {
     const smoother = ScrollSmoother.get();
-    if (smoother) smoother.scrollTo(target, true, "center center");
+    const element = document.querySelector(target);
+
+    if (smoother && element) {
+      smoother.scrollTo(target, true, "center center");
+    } else if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
   };
 
   const NavLink = ({ href, label }) => {
@@ -87,7 +93,6 @@ const Nav = () => {
       );
     }
 
-    // External dan mailto: biarkan default browser menangani
     return (
       <div
         className={`nav-text relative overflow-hidden cursor-pointer ${extraClasses}`}

@@ -46,12 +46,12 @@ const projects = [
 const Work = () => {
   const sectionRef = useRef(null);
   const containerRef = useRef(null);
-
+  const xValue = window.innerWidth >= 768 ? 100 : 10;
   useScrollAnimation({
     ref: sectionRef,
     itemSelector: ".text-ani",
     options: {
-      x: 500,
+      x: xValue,
       y: 0,
       duration: 2,
     }
