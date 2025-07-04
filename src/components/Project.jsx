@@ -25,8 +25,11 @@ export default function Project() {
 
   const projects = [
     { label: "Movie App", url: "https://rafly-id-try-movie-app.vercel.app/" },
-    { label: "Awward App", url: "https://example.com/awward" }, // link to awward website
-    { label: "Portofolio App", url: "https://example.com/portofolio" }, // link to protofolio website
+    { label: "Awward App", url: "https://rafly-id-awwward.vercel.app/" },
+    {
+      label: "Portofolio App",
+      url: "https://personal-portfolio-beta-weld.vercel.app/",
+    },
     { label: "Todo App", url: "https://id-camp-todoapps.vercel.app/" },
     {
       label: "Final Exam App",
