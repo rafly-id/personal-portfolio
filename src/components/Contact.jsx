@@ -1,4 +1,5 @@
 import { useCallback, useLayoutEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { slideUpTextHover } from "../utils/gsapHover";
 
 const Contact = () => {
@@ -23,6 +24,7 @@ const Contact = () => {
     { href: "/", label: "Raf" },
     { href: "/work", label: "Project" },
   ];
+
   const socialLinks = [
     { href: "https://www.instagram.com/__rafllyy/", label: "Instagram" },
     {
@@ -45,12 +47,12 @@ const Contact = () => {
                 key={href}
                 className="relative overflow-hidden contact-hover cursor-pointer"
               >
-                <a href={href} className="block relative">
+                <Link to={href} className="block relative">
                   <span className="text-default block">{label}</span>
                   <span className="nav-hover absolute top-0 left-0 block opacity-0">
                     {label}
                   </span>
-                </a>
+                </Link>
               </div>
             ))}
           </div>
@@ -79,9 +81,7 @@ const Contact = () => {
                 <a
                   href={href}
                   target={href.startsWith("http") ? "_blank" : undefined}
-                  rel={
-                    href.startsWith("http") ? "noopener noreferrer" : undefined
-                  }
+                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="block relative hover:underline"
                 >
                   <span className="text-default block">{label}</span>
