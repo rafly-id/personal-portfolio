@@ -28,7 +28,7 @@ export default function Project() {
     { label: "Awward App", url: "https://rafly-id-awwward.vercel.app/" },
     {
       label: "Portofolio App",
-      url: "https://personal-portfolio-beta-weld.vercel.app/",
+      url: "https://personal-portfolio-raf.vercel.app/",
     },
     { label: "Todo App", url: "https://id-camp-todoapps.vercel.app/" },
     {

@@ -27,7 +27,7 @@ const projects = [
     title: "Portofolio App",
     technology: ["React", "Tailwind", "GSAP", "Vite", "Vercel"],
     img: project3,
-    link: "https://personal-portfolio-beta-weld.vercel.app/",
+    link: "https://personal-portfolio-raf.vercel.app/",
   },
   {
     title: "Todo App",
