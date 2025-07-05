@@ -1,14 +1,49 @@
-import { useCallback, useLayoutEffect, useRef } from "react";
+import { useRef, useLayoutEffect, useCallback } from "react";
 import ScrollSmoother from "gsap/ScrollSmoother";
 import { slideUpTextHover } from "../utils/gsapHover";
+import { useScrollAnimation } from "../utils/scrollAnimation";
+
+const primaryLinks = [
+  { href: "#home", label: "Home" },
+  { href: "#about", label: "About" },
+  { href: "#project", label: "Project" },
+  { href: "#contact", label: "Contact" },
+];
+
+const socialLinks = [
+  {
+    href: "https://www.linkedin.com/in/rafly-adriansyah-35587225b/",
+    label: "LinkedIn",
+  },
+  { href: "https://www.instagram.com/__rafllyy/", label: "Instagram" },
+  { href: "https://github.com/rafly-id", label: "GitHub" },
+  { href: "mailto:muhr0417@gmail.com", label: "Email" },
+];
+
+const HoverLink = ({ href, label, onClick, external, download }) => (
+  <div className="relative overflow-hidden contact-hover cursor-pointer">
+    <a
+      href={href}
+      onClick={onClick}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      {...(download ? { download: true } : {})}
+      className="block relative"
+    >
+      <span className="text-default block">{label}</span>
+      <span className="nav-hover absolute top-0 left-0 block opacity-0">
+        {label}
+      </span>
+    </a>
+  </div>
+);
 
 const Contact = () => {
-  const navRef = useRef(null);
+  const sectionRef = useRef(null);
 
   useLayoutEffect(() => {
-    if (!navRef.current) return;
+    if (!sectionRef.current) return;
     const cleanup = slideUpTextHover({
-      container: navRef.current,
+      container: sectionRef.current,
       itemSelector: ".contact-hover",
       defaultTxtSel: ".text-default",
       hoverTxtSel: ".nav-hover",
@@ -16,115 +51,87 @@ const Contact = () => {
     return cleanup;
   }, []);
 
-  const handleScroll = useCallback((target) => {
-    const smoother = ScrollSmoother.get();
-    const element = document.querySelector(target);
+  useScrollAnimation({
+    ref: sectionRef,
+    itemSelector: ".ani",
+    triggerOptions: {
+      toggleAction: "play none none none",
+    },
+    options: {
+      stagger: 0.2,
+    },
+  });
 
-    if (smoother && element) {
-      smoother.scrollTo(target, true, "center center");
-    } else if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "center" });
+  const handleScroll = useCallback((href) => {
+    const smoother = ScrollSmoother.get();
+    const element = document.querySelector(href);
+    if (element) {
+      smoother
+        ? smoother.scrollTo(href, true, "center center")
+        : element.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   }, []);
 
-  const handleBackToTop = useCallback(() => {
-    handleScroll("#home");
-  }, [handleScroll]);
-
-  const primaryLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#project", label: "Project" },
-    { href: "#contact", label: "Contact" },
-  ];
-
-  const socialLinks = [
-    { href: "https://www.instagram.com/__rafllyy/", label: "Instagram" },
-    {
-      href: "https://www.linkedin.com/in/rafly-adriansyah-35587225b/",
-      label: "LinkedIn",
-    },
-    { href: "https://github.com/rafly-id", label: "GitHub" },
-    { href: "mailto:muhr0417@gmail.com", label: "Email" },
-  ];
+  const whatsappLink = `https://wa.me/6285974111131?text=${encodeURIComponent(
+    "Halo Rafly "
+  )}`;
+  const cvLink = "/assets/CV-Rafly-Adriansyah.pdf"; // ganti path
 
   return (
-    <section id="contact" className="pb-[25px] md:pb-[50px] uppercase">
-      <h1 className="text-xs font-light mb-2 ml-5">Contact</h1>
+    <section id="contact" ref={sectionRef} className="uppercase pb-5">
+      <div className="text-center mb-5 font-light text-xs md:text-sm tracking-widest">
+        <h2>CONTACT</h2>
+      </div>
 
-      <nav ref={navRef} aria-label="Contact Navigation" className="border-t">
-        <div className="flex justify-between items-center mx-5 mt-5 text-xs md:text-sm font-light -tracking-wider">
-          <div className="flex flex-col space-y-2">
-            {primaryLinks.map(({ href, label }) => (
-              <div
-                key={href}
-                className="relative overflow-hidden contact-hover cursor-pointer"
-              >
-                <a
-                  href={href}
-                  className="block relative"
-                  onClick={(e) => {
-                    if (href.startsWith("#")) {
+      <h1 className="text-lg md:text-xl font-black -tracking-widest border-b pb-4 mb-12 md:mb-20 mx-5">
+        LET'S TALK :
+      </h1>
+
+      <div className="flex justify-around items-center px-5 mb-12 font-oswald text-xl md:text-7xl">
+        <div className="ani p-5 md:p-30 rounded-2xl">
+          <HoverLink href={whatsappLink} label="WhatsApp" external />
+        </div>
+        <div className="ani p-5 md:p-30 rounded-2xl">
+          <HoverLink href={cvLink} label="Download CV" download />
+        </div>
+      </div>
+
+      <nav
+        aria-label="Contact Navigation"
+        className="border-t mt-5 md:mt-20 mx-5 pt-6"
+      >
+        <div className="flex flex-wrap justify-between items-baseline gap-y-4 text-xs md:text-sm font-light -tracking-wider">
+          <div className="flex flex-wrap items-baseline gap-x-8 gap-y-2">
+            <div className="flex items-baseline gap-2">
+              <h2 className="font-semibold">LINKS</h2>
+              {primaryLinks.map(({ href, label }) => (
+                <div className="ani">
+                  <HoverLink
+                    key={href}
+                    href={href}
+                    label={label}
+                    onClick={(e) => {
                       e.preventDefault();
                       handleScroll(href);
-                    }
-                  }}
-                >
-                  <span className="text-default block">{label}</span>
-                  <span className="nav-hover absolute top-0 left-0 block opacity-0">
-                    {label}
-                  </span>
-                </a>
-              </div>
-            ))}
-          </div>
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
 
-          <div className="flex items-center space-x-2 mt-4 md:mt-0">
-            <span className="font-light text-xs md:text-sm">Build with me</span>
-            <div className="relative overflow-hidden contact-hover cursor-pointer">
-              <a
-                href="mailto:muhr0417@gmail.com"
-                className="block relative text-2xl md:text-4xl font-black -tracking-widest hover:underline"
-              >
-                <span className="text-default block">Let's Chat</span>
-                <span className="nav-hover absolute top-0 left-0 block opacity-0">
-                  Let's Chat
-                </span>
-              </a>
+            <div className="flex items-baseline gap-2">
+              <h2 className="font-semibold">SOCIAL</h2>
+              {socialLinks.map(({ href, label }) => (
+                <div className="ani">
+                  <HoverLink key={href} href={href} label={label} external />
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="flex flex-col space-y-1 mt-4 md:mt-0 text-xs md:text-sm">
-            {socialLinks.map(({ href, label }) => (
-              <div
-                key={href}
-                className="relative overflow-hidden contact-hover cursor-pointer"
-              >
-                <a
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="block relative hover:underline"
-                >
-                  <span className="text-default block">{label}</span>
-                  <span className="nav-hover absolute top-0 left-0 block opacity-0">
-                    {label}
-                  </span>
-                </a>
-              </div>
-            ))}
+          <div className="text-xs text-right">
+            <p>RAFLY ADRIANSYAH © {new Date().getFullYear()}</p>
           </div>
-        </div>
-
-        <div className="w-full mt-10 flex justify-center">
-          <button
-            type="button"
-            onClick={handleBackToTop}
-            aria-label="Kembali ke atas halaman"
-            className="text-6xl md:text-9xl font-black -tracking-widest hover:underline"
-          >
-            Back To Top
-          </button>
         </div>
       </nav>
     </section>
