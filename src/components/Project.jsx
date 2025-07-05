@@ -5,6 +5,7 @@ import {
   useState,
   useEffect,
 } from "react";
+
 import { createPortal } from "react-dom";
 import gsap from "gsap";
 import { slideUpTextWithBgHover } from "/src/utils/gsapHover";
@@ -73,6 +74,9 @@ export default function Project() {
   useScrollAnimation({
     ref: sectionRef,
     itemSelector: ".project-item",
+    options: {
+      stagger: 0.2,
+    },
   });
 
   useLayoutEffect(() => {

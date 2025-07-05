@@ -53,7 +53,7 @@ const Nav = () => {
             }}
             className="block"
           >
-            <span className="text-default block opacity-80">{label}</span>
+            <span className="text-default block opacity-30">{label}</span>
             <span className="nav-hover absolute top-0 left-0 block opacity-0">
               {label}
             </span>
@@ -70,7 +70,7 @@ const Nav = () => {
           target={isMailto ? undefined : "_blank"}
           rel={isMailto ? undefined : "noopener noreferrer"}
         >
-          <span className="text-default block opacity-80">{label}</span>
+          <span className="text-default block opacity-30">{label}</span>
           <span className="nav-hover absolute top-0 left-0 block opacity-0">
             {label}
           </span>
@@ -81,7 +81,7 @@ const Nav = () => {
 
   return (
     <nav
-      className="nav-fixed bg-hitam text-putih px-2 md:px-5 py-1 -tracking-widest"
+      className="nav-fixed bg-putih text-hitam md:bg-transparent px-2 md:px-5 py-1 -tracking-widest"
       ref={navRef}
     >
       <div className="flex justify-between text-xl md:text-4xl font-black uppercase">

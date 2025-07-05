@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useScrollAnimation } from "../utils/scrollAnimation";
 
 const aboutTexts = [
-  "This site is",
+  "This site is ",
   "A simple space where I ",
   "organize my work, ",
   "share my progress, ",
