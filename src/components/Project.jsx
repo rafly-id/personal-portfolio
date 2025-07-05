@@ -1,4 +1,10 @@
-import { useRef, useLayoutEffect, useCallback } from "react";
+import {
+  useRef,
+  useLayoutEffect,
+  useCallback,
+  useState,
+  useEffect,
+} from "react";
 import { createPortal } from "react-dom";
 import gsap from "gsap";
 import { slideUpTextWithBgHover } from "/src/utils/gsapHover";
@@ -43,9 +49,26 @@ const projects = [
   },
 ];
 
+const useIsTouchDevice = () => {
+  const [isTouch, setIsTouch] = useState(false);
+  useEffect(() => {
+    const onTouch = () => {
+      setIsTouch(true);
+      window.removeEventListener("touchstart", onTouch, { passive: true });
+    };
+    window.addEventListener("touchstart", onTouch, { passive: true });
+    return () =>
+      window.removeEventListener("touchstart", onTouch, { passive: true });
+  }, []);
+  return isTouch;
+};
+
 export default function Project() {
   const sectionRef = useRef(null);
   const previewRef = useRef(null);
+  const isTouchDevice = useIsTouchDevice();
+
+  const quickToFunctions = useRef({ x: null, y: null });
 
   useScrollAnimation({
     ref: sectionRef,
@@ -53,64 +76,92 @@ export default function Project() {
   });
 
   useLayoutEffect(() => {
-    const cleanupHover = slideUpTextWithBgHover({
-      container: sectionRef.current,
-      itemSelector: ".project-item",
-      defaultTxtSel: ".text-default",
-      hoverTxtSel: ".project-hover",
-      overlaySel: ".bg-overlay",
-      textColor: "#d3d0d7",
-      bgColor: "#212121",
-    });
+    if (!isTouchDevice) {
+      const cleanupHover = slideUpTextWithBgHover({
+        container: sectionRef.current,
+        itemSelector: ".project-item",
+        defaultTxtSel: ".text-default",
+        hoverTxtSel: ".project-hover",
+        overlaySel: ".bg-overlay",
+        textColor: "#d3d0d7",
+        bgColor: "#212121",
+      });
 
-    gsap.set(previewRef.current, { autoAlpha: 0, x: 0, y: 0 });
+      gsap.set(previewRef.current, { autoAlpha: 0 });
 
-    return () => {
-      cleanupHover();
-      gsap.killTweensOf(previewRef.current);
-    };
-  }, []);
+      quickToFunctions.current.x = gsap.quickTo(previewRef.current, "x", {
+        duration: 0.5,
+        ease: "power3",
+      });
+      quickToFunctions.current.y = gsap.quickTo(previewRef.current, "y", {
+        duration: 0.5,
+        ease: "power3",
+      });
 
-  const onMouseEnter = useCallback((e, imgUrl) => {
+      return () => {
+        cleanupHover();
+        gsap.killTweensOf(previewRef.current);
+      };
+    }
+  }, [isTouchDevice]);
+
+  const onMouseEnter = useCallback((imgUrl) => {
     const el = previewRef.current;
     gsap.set(el, { backgroundImage: `url(${imgUrl})` });
-    gsap.to(el, {
-      duration: 0.3,
-      autoAlpha: 1,
-      x: e.clientX + 10,
-      y: e.clientY + 10,
-      ease: "power3.out",
-    });
+    gsap.to(el, { duration: 0.3, autoAlpha: 1, ease: "power3.out" });
   }, []);
 
   const onMouseMove = useCallback((e) => {
-    gsap.to(previewRef.current, {
-      duration: 0.1,
-      x: e.clientX + 10,
-      y: e.clientY + 10,
-    });
+    const previewElement = previewRef.current;
+    if (!previewElement || !quickToFunctions.current.x) return;
+
+    const { clientX, clientY } = e;
+    const { innerWidth, innerHeight } = window;
+
+    const previewWidth = previewElement.offsetWidth;
+    const previewHeight = previewElement.offsetHeight;
+    const margin = 15;
+
+    let targetX = clientX + margin;
+    if (targetX + previewWidth > innerWidth) {
+      targetX = clientX - previewWidth - margin;
+    }
+
+    let targetY = clientY + margin;
+    if (targetY + previewHeight > innerHeight) {
+      targetY = clientY - previewHeight - margin;
+    }
+
+    quickToFunctions.current.x(targetX);
+    quickToFunctions.current.y(targetY);
   }, []);
 
   const onMouseLeave = useCallback(() => {
     gsap.to(previewRef.current, { duration: 0.2, autoAlpha: 0 });
   }, []);
 
-  const previewPortal = createPortal(
-    <div
-      ref={previewRef}
-      className="fixed w-80 h-40 bg-center bg-cover pointer-events-none z-50 filter grayscale"
-      style={{ top: 0, left: 0 }}
-    />,
-    document.body
-  );
+  const previewPortal =
+    !isTouchDevice &&
+    createPortal(
+      <div
+        ref={previewRef}
+        className="fixed w-96 h-48 bg-center bg-cover pointer-events-none z-50 filter grayscale"
+        style={{ top: 0, left: 0 }}
+      />,
+      document.body
+    );
 
   return (
     <>
       {previewPortal}
-      <section ref={sectionRef} className="pb-[100px] md:pb-[250px] w-full" id="project">
+      <section
+        ref={sectionRef}
+        className="pb-[100px] md:pb-[250px] w-full"
+        id="project"
+      >
         <div className="text-xl md:text-5xl font-black uppercase">
           <div className="text-xs font-light mb-2 ml-5">
-            <h1>project</h1>
+            <h2>project</h2>
           </div>
           <div>
             {projects.map(({ id, label, url, img }) => (
@@ -120,9 +171,11 @@ export default function Project() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="project-item relative flex border-b py-3 md:py-5 justify-between cursor-pointer overflow-hidden"
-                onMouseEnter={(e) => onMouseEnter(e, img)}
-                onMouseMove={onMouseMove}
-                onMouseLeave={onMouseLeave}
+                {...(!isTouchDevice && {
+                  onMouseEnter: () => onMouseEnter(img),
+                  onMouseMove: onMouseMove,
+                  onMouseLeave: onMouseLeave,
+                })}
               >
                 <div className="bg-overlay"></div>
                 <div className="project-text relative overflow-hidden z-10">
