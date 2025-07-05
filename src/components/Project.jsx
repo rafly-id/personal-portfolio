@@ -107,6 +107,7 @@ export default function Project() {
 
   const onMouseEnter = useCallback((imgUrl) => {
     const el = previewRef.current;
+    gsap.killTweensOf(el, "autoAlpha");
     gsap.set(el, { backgroundImage: `url(${imgUrl})` });
     gsap.to(el, { duration: 0.3, autoAlpha: 1, ease: "power3.out" });
   }, []);
@@ -137,7 +138,9 @@ export default function Project() {
   }, []);
 
   const onMouseLeave = useCallback(() => {
-    gsap.to(previewRef.current, { duration: 0.2, autoAlpha: 0 });
+    const el = previewRef.current;
+    gsap.killTweensOf(el, "autoAlpha");
+    gsap.to(el, { duration: 0.2, autoAlpha: 0 });
   }, []);
 
   const previewPortal =
@@ -160,7 +163,7 @@ export default function Project() {
         id="project"
       >
         <div className="text-xl md:text-5xl font-black uppercase">
-          <div className="text-xs font-light mb-2 ml-5">
+          <div className="text-center mb-5 font-light text-xs md:text-sm tracking-widest">
             <h2>project</h2>
           </div>
           <div>
