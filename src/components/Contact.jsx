@@ -75,7 +75,7 @@ const Contact = () => {
   const whatsappLink = `https://wa.me/6285974111131?text=${encodeURIComponent(
     "Halo Rafly "
   )}`;
-  const cvLink = "/src/assets/CV_Rafly_Adriansyah.pdf";
+  const cvLink = "/CV_Rafly_Adriansyah.pdf";
 
   return (
     <section id="contact" ref={sectionRef} className="uppercase pb-5">
