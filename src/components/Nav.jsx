@@ -3,11 +3,9 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollSmoother from "gsap/ScrollSmoother";
 import { slideUpTextHover } from "/src/utils/gsapHover";
-import { Link, useLocation } from "react-router-dom";
 
 const Nav = () => {
   const navRef = useRef(null);
-  const location = useLocation();
 
   useGSAP(() => {
     const items = navRef.current.querySelectorAll(".nav-text");
@@ -17,7 +15,7 @@ const Nav = () => {
       ease: "power2.inOut",
       stagger: { each: 0.1, from: "start" },
     });
-  }, [location.pathname]);
+  }, []);
 
   useEffect(() => {
     const cleanup = slideUpTextHover({
@@ -27,7 +25,7 @@ const Nav = () => {
       hoverTxtSel: ".nav-hover",
     });
     return cleanup;
-  }, [location.pathname]);
+  }, []);
 
   const handleScroll = (target) => {
     const smoother = ScrollSmoother.get();
@@ -41,37 +39,12 @@ const Nav = () => {
   };
 
   const NavLink = ({ href, label }) => {
-    const isRoute = href.startsWith("/");
     const isAnchor = href.startsWith("#");
     const isMailto = href.startsWith("mailto:");
-    const isActiveRoute = isRoute && location.pathname === href;
-    const extraClasses = isActiveRoute ? "nav-hover" : "";
-    const defaultOpacity = isActiveRoute ? "opacity-100" : "opacity-30";
-
-    if (isRoute) {
-      return (
-        <div
-          className={`nav-text relative overflow-hidden cursor-pointer ${extraClasses}`}
-        >
-          <Link to={href} className="block">
-            <span className={`text-default block ${defaultOpacity}`}>
-              {label}
-            </span>
-            {!isActiveRoute && (
-              <span className="nav-hover absolute top-0 left-0 block opacity-0">
-                {label}
-              </span>
-            )}
-          </Link>
-        </div>
-      );
-    }
 
     if (isAnchor) {
       return (
-        <div
-          className={`nav-text relative overflow-hidden cursor-pointer ${extraClasses}`}
-        >
+        <div className="nav-text relative overflow-hidden cursor-pointer">
           <a
             href={href}
             onClick={(e) => {
@@ -80,37 +53,27 @@ const Nav = () => {
             }}
             className="block"
           >
-            <span className={`text-default block ${defaultOpacity}`}>
+            <span className="text-default block opacity-80">{label}</span>
+            <span className="nav-hover absolute top-0 left-0 block opacity-0">
               {label}
             </span>
-            {!extraClasses && (
-              <span className="nav-hover absolute top-0 left-0 block opacity-0">
-                {label}
-              </span>
-            )}
           </a>
         </div>
       );
     }
 
     return (
-      <div
-        className={`nav-text relative overflow-hidden cursor-pointer ${extraClasses}`}
-      >
+      <div className="nav-text relative overflow-hidden cursor-pointer">
         <a
           href={href}
           className="block"
           target={isMailto ? undefined : "_blank"}
           rel={isMailto ? undefined : "noopener noreferrer"}
         >
-          <span className={`text-default block ${defaultOpacity}`}>
+          <span className="text-default block opacity-80">{label}</span>
+          <span className="nav-hover absolute top-0 left-0 block opacity-0">
             {label}
           </span>
-          {!extraClasses && (
-            <span className="nav-hover absolute top-0 left-0 block opacity-0">
-              {label}
-            </span>
-          )}
         </a>
       </div>
     );
@@ -123,8 +86,9 @@ const Nav = () => {
     >
       <div className="flex justify-between text-xl md:text-4xl font-black uppercase">
         <div className="flex gap-2 md:gap-5">
-          <NavLink href="/" label="Raf" />
-          <NavLink href="/work" label="Project" />
+          <NavLink href="#home" label="Raf" />
+          <NavLink href="#about" label="About" />
+          <NavLink href="#project" label="Project" />
           <NavLink href="#contact" label="Contact" />
         </div>
         <NavLink href="mailto:muhr0417@gmail.com" label="Let's build" />

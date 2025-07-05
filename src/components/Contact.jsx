@@ -1,5 +1,5 @@
 import { useCallback, useLayoutEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import ScrollSmoother from "gsap/ScrollSmoother";
 import { slideUpTextHover } from "../utils/gsapHover";
 
 const Contact = () => {
@@ -14,15 +14,28 @@ const Contact = () => {
       hoverTxtSel: ".nav-hover",
     });
     return cleanup;
-  }, [navRef]);
-
-  const handleBackToTop = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
+  const handleScroll = useCallback((target) => {
+    const smoother = ScrollSmoother.get();
+    const element = document.querySelector(target);
+
+    if (smoother && element) {
+      smoother.scrollTo(target, true, "center center");
+    } else if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, []);
+
+  const handleBackToTop = useCallback(() => {
+    handleScroll("#home");
+  }, [handleScroll]);
+
   const primaryLinks = [
-    { href: "/", label: "Raf" },
-    { href: "/work", label: "Project" },
+    { href: "#home", label: "Home" },
+    { href: "#about", label: "About" },
+    { href: "#project", label: "Project" },
+    { href: "#contact", label: "Contact" },
   ];
 
   const socialLinks = [
@@ -47,12 +60,21 @@ const Contact = () => {
                 key={href}
                 className="relative overflow-hidden contact-hover cursor-pointer"
               >
-                <Link to={href} className="block relative">
+                <a
+                  href={href}
+                  className="block relative"
+                  onClick={(e) => {
+                    if (href.startsWith("#")) {
+                      e.preventDefault();
+                      handleScroll(href);
+                    }
+                  }}
+                >
                   <span className="text-default block">{label}</span>
                   <span className="nav-hover absolute top-0 left-0 block opacity-0">
                     {label}
                   </span>
-                </Link>
+                </a>
               </div>
             ))}
           </div>
