@@ -16,6 +16,8 @@ export function useScrollAnimation({
   useGSAP(() => {
     if (!ref.current) return;
     const items = ref.current.querySelectorAll(itemSelector);
+    if (!items.length) return;
+
     const animationVars = varsFn ? varsFn(items) : gsapVars;
 
     const smoother = ScrollSmoother.get();
@@ -23,7 +25,7 @@ export function useScrollAnimation({
       ? { scroller: "#wrapper-smooth" }
       : {};
 
-    gsap.from(items, {
+    const anim = gsap.from(items, {
       opacity: 0,
       y: 25,
       duration: 1,
@@ -39,5 +41,10 @@ export function useScrollAnimation({
       },
       ...animationVars,
     });
+
+    return () => {
+      if (anim.scrollTrigger) anim.scrollTrigger.kill();
+      anim.kill();
+    };
   }, []);
 }

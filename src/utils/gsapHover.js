@@ -34,24 +34,32 @@ export function slideUpTextHover({
         0
       );
 
-    item.addEventListener("mouseenter", () => {
+    const onMouseEnter = () => {
       tl.play();
       onEnter?.(item, tl);
-    });
-    item.addEventListener("mouseleave", () => {
+    };
+    const onMouseLeave = () => {
       tl.reverse();
       onLeave?.(item, tl);
       tl.eventCallback("onReverseComplete", () => {
         gsap.set([defaultTxt, hoverTxt], { clearProps: "transform,opacity" });
       });
-    });
+    };
+    item.addEventListener("mouseenter", onMouseEnter);
+    item.addEventListener("mouseleave", onMouseLeave);
+
+    item._onMouseEnter = onMouseEnter;
+    item._onMouseLeave = onMouseLeave;
   });
 
-  // cleanup: return function untuk remove listener
   return () => {
     items.forEach((item) => {
-      item.removeEventListener("mouseenter", () => {});
-      item.removeEventListener("mouseleave", () => {});
+      if (item._onMouseEnter)
+        item.removeEventListener("mouseenter", item._onMouseEnter);
+      if (item._onMouseLeave)
+        item.removeEventListener("mouseleave", item._onMouseLeave);
+      delete item._onMouseEnter;
+      delete item._onMouseLeave;
     });
   };
 }
@@ -114,20 +122,29 @@ export function slideUpTextWithBgHover({
         0
       );
 
-    item.addEventListener("mouseenter", () => {
+    const onMouseEnter = () => {
       tlBg.play();
       tlText.play();
-    });
-    item.addEventListener("mouseleave", () => {
+    };
+    const onMouseLeave = () => {
       tlBg.reverse();
       tlText.reverse();
-    });
+    };
+    item.addEventListener("mouseenter", onMouseEnter);
+    item.addEventListener("mouseleave", onMouseLeave);
+
+    item._onMouseEnter = onMouseEnter;
+    item._onMouseLeave = onMouseLeave;
   });
 
   return () => {
     items.forEach((item) => {
-      item.removeEventListener("mouseenter", () => {});
-      item.removeEventListener("mouseleave", () => {});
+      if (item._onMouseEnter)
+        item.removeEventListener("mouseenter", item._onMouseEnter);
+      if (item._onMouseLeave)
+        item.removeEventListener("mouseleave", item._onMouseLeave);
+      delete item._onMouseEnter;
+      delete item._onMouseLeave;
     });
   };
 }
