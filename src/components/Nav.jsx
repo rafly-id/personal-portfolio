@@ -84,7 +84,7 @@ const Nav = () => {
       className="nav-fixed bg-putih text-hitam md:bg-transparent px-2 md:px-5 py-1 -tracking-widest"
       ref={navRef}
     >
-      <div className="flex justify-between text-xl md:text-4xl font-black uppercase">
+      <div className="flex justify-between text-lg md:text-4xl font-black uppercase">
         <div className="flex gap-2 md:gap-5">
           <NavLink href="#home" label="Raf" />
           <NavLink href="#about" label="About" />

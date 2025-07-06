@@ -63,7 +63,8 @@ const Contact = () => {
     ref: sectionRef,
     itemSelector: ".ani",
     triggerOptions: {
-      toggleAction: "play none none none",
+      start: "center bottom",
+      markers: true,
     },
     options: {
       stagger: 0.2,
