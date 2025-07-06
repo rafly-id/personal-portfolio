@@ -3,12 +3,21 @@ import { useScrollAnimation } from "../utils/scrollAnimation";
 
 const Technologies = () => {
   const containerRef = useRef(null);
+
+  useScrollAnimation({
+    ref: containerRef,
+    itemSelector: ".title",
+    triggerOptions: {
+      start: "top bottom",
+    },
+  });
+
   useScrollAnimation({
     ref: containerRef,
     itemSelector: ".text",
     triggerOptions: {
-      toggleAction: "play none none none"
-    }
+      toggleAction: "play none none none",
+    },
   });
 
   return (
@@ -19,7 +28,7 @@ const Technologies = () => {
     >
       <div className="text-center text-xl md:text-5xl font-black uppercase">
         <div className="mb-5 font-light text-xs md:text-sm tracking-widest">
-          <h1>Technologies</h1>
+          <h1 className="title">Technologies</h1>
         </div>
         <div className="text">
           Javascript / Tailwindcss / React / GSAP / Vercel / GIT

@@ -53,6 +53,14 @@ const Contact = () => {
 
   useScrollAnimation({
     ref: sectionRef,
+    itemSelector: ".title",
+    triggerOptions: {
+      start: "top bottom",
+    },
+  });
+
+  useScrollAnimation({
+    ref: sectionRef,
     itemSelector: ".ani",
     triggerOptions: {
       toggleAction: "play none none none",
@@ -80,7 +88,7 @@ const Contact = () => {
   return (
     <section id="contact" ref={sectionRef} className="uppercase pb-5">
       <div className="text-center mb-5 font-light text-xs md:text-sm tracking-widest">
-        <h2>CONTACT</h2>
+        <h2 className="title">CONTACT</h2>
       </div>
 
       <h1 className="text-lg md:text-xl font-black -tracking-widest border-b pb-4 mb-12 md:mb-20 mx-5">

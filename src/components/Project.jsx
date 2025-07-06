@@ -73,6 +73,14 @@ export default function Project() {
 
   useScrollAnimation({
     ref: sectionRef,
+    itemSelector: ".title",
+    triggerOptions: {
+      start: "top bottom",
+    },
+  });
+
+  useScrollAnimation({
+    ref: sectionRef,
     itemSelector: ".project-item",
     options: {
       stagger: 0.2,
@@ -172,7 +180,7 @@ export default function Project() {
       >
         <div className="text-xl md:text-5xl font-black uppercase">
           <div className="text-center mb-5 font-light text-xs md:text-sm tracking-widest">
-            <h2>project</h2>
+            <h2 className="title">project</h2>
           </div>
           <div>
             {projects.map(({ id, label, url, img }) => (

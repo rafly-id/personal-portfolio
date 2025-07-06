@@ -25,11 +25,15 @@ const About = () => {
 
   useScrollAnimation({
     ref: containerRef,
-    itemSelector: ".text",
-    options: {
-      opacity: 0.1,
-      y: 10,
+    itemSelector: ".title",
+    triggerOptions: {
+      start: "top bottom",
     },
+  });
+
+  useScrollAnimation({
+    ref: containerRef,
+    itemSelector: ".text",
     triggerOptions: {
       end: "250px center",
       scrub: 1,
@@ -44,7 +48,7 @@ const About = () => {
     >
       <div className="text-center text-xl md:text-5xl font-black uppercase">
         <div className="mb-5 font-light text-xs md:text-sm tracking-widest">
-          <h1>ABOUT</h1>
+          <h1 className="title">ABOUT</h1>
         </div>
         {aboutTexts.map((text, index) => (
           <span className="text" key={index}>
