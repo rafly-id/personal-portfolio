@@ -1,17 +1,38 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger, ScrollSmoother } from "gsap/all";
 
 import Nav from "./components/Nav";
 import Home from "./views/Home";
+import Preloader from "./components/Preloader";
+import profile from "./assets/profile.png";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const cursorRef = useRef(null);
   const smootherRef = useRef(null);
 
   useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    Promise.all([
+      document.fonts.ready,
+      new Promise((resolve) => {
+        const img = new window.Image();
+        img.src = profile;
+        if (img.complete) resolve();
+        else img.onload = resolve;
+      }),
+      new Promise((resolve) => setTimeout(resolve, 1000)),
+    ]).then(() => {
+      document.body.style.overflow = "";
+    });
+  }, []);
+
+  useEffect(() => {
+    if (isLoading) return;
     if (typeof window !== "undefined" && window.innerWidth < 768) return;
 
     smootherRef.current = ScrollSmoother.create({
@@ -36,10 +57,12 @@ const App = () => {
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
-      smootherRef.current.kill();
+      smootherRef.current?.kill();
       ScrollTrigger.killAll();
     };
-  }, []);
+  }, [isLoading]);
+
+  if (isLoading) return <Preloader onComplete={() => setIsLoading(false)} />;
 
   return (
     <>

@@ -13,6 +13,12 @@ const Home = () => {
   useScrollAnimation({
     ref: sectionRef,
     itemSelector: ".fadeup",
+    options: {
+      stagger: 0,
+    },
+    triggerOptions: {
+      once: true,
+    }
   });
 
   return (
