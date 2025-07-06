@@ -1,7 +1,3 @@
-import About from "/src/components/About";
-import Technologies from "/src/components/Technologies";
-import Project from "/src/components/Project";
-import Contact from "/src/components/Contact";
 import profile from "../assets/profile.png";
 
 import { useRef } from "react";
@@ -34,10 +30,6 @@ const Home = () => {
           </h1>
         </div>
       </section>
-      <About />
-      <Technologies />
-      <Project />
-      <Contact />
     </>
   );
 };

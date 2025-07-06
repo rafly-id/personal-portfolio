@@ -2,10 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger, ScrollSmoother } from "gsap/all";
 
-import Nav from "./components/Nav";
+import About from "/src/components/About";
+import Contact from "/src/components/Contact";
 import Home from "./views/Home";
-import Preloader from "./components/Preloader";
+import Nav from "./components/Nav";
 import profile from "./assets/profile.png";
+import Preloader from "./components/Preloader";
+import Project from "/src/components/Project";
+import Technologies from "/src/components/Technologies";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -77,6 +81,10 @@ const App = () => {
       <div id="wrapper-smooth">
         <div id="content-smooth">
           <Home />
+          <About />
+          <Technologies />
+          <Project />
+          <Contact />
         </div>
       </div>
     </>
