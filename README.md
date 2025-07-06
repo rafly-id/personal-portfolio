@@ -1,6 +1,6 @@
 # Personal Portfolio
 
-Website portofolio pribadi untuk Muhammad Rafly Adriansyah, dibangun menggunakan **React**, **Vite**, dan **Tailwind CSS**.
+Website portofolio pribadi untuk Muhammad Rafly Adriansyah, dibangun menggunakan **React**, **Vite**, **GSAP**, dan **Tailwind CSS**.
 
 ---
 
