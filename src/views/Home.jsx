@@ -19,7 +19,7 @@ const Home = () => {
 
   return (
     <>
-      <section className="mb-52 md:mb-80" id="home" ref={sectionRef}>
+      <section className="mb-52 md:mb-80 h-full" id="home" ref={sectionRef}>
         <div className="flex justify-end items-end mb-5 fadeup">
           <img src={profile} alt="profile" className="w-xl" />
         </div>

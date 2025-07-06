@@ -26,19 +26,13 @@ const About = () => {
   useScrollAnimation({
     ref: containerRef,
     itemSelector: ".text",
-    varsFn: (texts) => ({
+    options: {
       opacity: 0.1,
       y: 10,
-      stagger: {
-        each: 0.2,
-        amount: texts.length * 0.2,
-      },
-    }),
+    },
     triggerOptions: {
-      start: "top center",
       end: "250px center",
       scrub: 1,
-      toggleAction: "play none reverse none"
     },
   });
 

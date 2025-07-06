@@ -21,8 +21,25 @@ const App = () => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
 
+    const waitForStylesheets = () => {
+      const links = [...document.querySelectorAll('link[rel="stylesheet"]')];
+      const promises = links.map(
+        (link) =>
+          new Promise((resolve, reject) => {
+            if (link.sheet) {
+              resolve();
+              return;
+            }
+            link.addEventListener("load", resolve);
+            link.addEventListener("error", reject);
+          })
+      );
+      return Promise.all(promises);
+    };
+
     Promise.all([
       document.fonts.ready,
+      waitForStylesheets(),
       new Promise((resolve) => {
         const img = new window.Image();
         img.src = profile;
@@ -74,9 +91,9 @@ const App = () => {
       <div
         ref={cursorRef}
         className="hidden md:block fixed top-0 left-0 w-5 h-5 rounded-full
-          bg-black/25 backdrop-blur-sm
-          z-[9999] pointer-events-none
-          transform -translate-x-1/2 -translate-y-1/2"
+         bg-black/25 backdrop-blur-sm
+         z-[9999] pointer-events-none
+         transform -translate-x-1/2 -translate-y-1/2"
       />
       <div id="wrapper-smooth">
         <div id="content-smooth">
