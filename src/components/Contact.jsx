@@ -64,7 +64,6 @@ const Contact = () => {
     itemSelector: ".ani",
     triggerOptions: {
       start: "center bottom",
-      markers: true,
     },
     options: {
       stagger: 0.2,
