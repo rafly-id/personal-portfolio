@@ -109,11 +109,16 @@ export default function Project() {
     }
   }, [isTouchDevice]);
 
-  const onMouseEnter = useCallback((imgUrl) => {
+  const onMouseEnter = useCallback((e, imgUrl) => {
     const el = previewRef.current;
-    gsap.killTweensOf(el, "autoAlpha");
+
+    gsap.set(el, {
+      x: e.clientX,
+      y: e.clientY,
+    });
+
     gsap.set(el, { backgroundImage: `url(${imgUrl})` });
-    gsap.to(el, { duration: 0.3, autoAlpha: 1, ease: "power3.out" });
+    gsap.to(el, { duration: 0.2, autoAlpha: 1, ease: "power3.out" });
   }, []);
 
   const onMouseMove = useCallback((e) => {
@@ -153,7 +158,6 @@ export default function Project() {
       <div
         ref={previewRef}
         className="fixed w-96 h-48 bg-center bg-cover pointer-events-none z-50 filter grayscale"
-        style={{ top: 0, left: 0 }}
       />,
       document.body
     );
@@ -179,7 +183,7 @@ export default function Project() {
                 rel="noopener noreferrer"
                 className="project-item relative flex border-b py-3 md:py-5 justify-between cursor-pointer overflow-hidden"
                 {...(!isTouchDevice && {
-                  onMouseEnter: () => onMouseEnter(img),
+                  onMouseEnter: (e) => onMouseEnter(e, img),
                   onMouseMove: onMouseMove,
                   onMouseLeave: onMouseLeave,
                 })}
