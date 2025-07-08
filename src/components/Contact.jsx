@@ -113,9 +113,8 @@ const Contact = () => {
             <div className="flex items-baseline gap-2">
               <h2 className="font-semibold">LINKS</h2>
               {primaryLinks.map(({ href, label }) => (
-                <div className="ani">
+                <div className="ani" key={href + label}>
                   <HoverLink
-                    key={href}
                     href={href}
                     label={label}
                     onClick={(e) => {
@@ -130,8 +129,8 @@ const Contact = () => {
             <div className="flex items-baseline gap-2">
               <h2 className="font-semibold">SOCIAL</h2>
               {socialLinks.map(({ href, label }) => (
-                <div className="ani">
-                  <HoverLink key={href} href={href} label={label} external />
+                <div className="ani" key={href + label}>
+                  <HoverLink href={href} label={label} external />
                 </div>
               ))}
             </div>
