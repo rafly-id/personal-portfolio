@@ -165,7 +165,7 @@ export default function Project() {
     createPortal(
       <div
         ref={previewRef}
-        className="fixed w-96 h-48 bg-center bg-cover pointer-events-none z-50 filter grayscale"
+        className="fixed w-96 h-48 bg-center bg-cover pointer-events-none z-50 filter grayscale rounded"
       />,
       document.body
     );

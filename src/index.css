@@ -11,7 +11,7 @@
 
 @layer base {
   body {
-    @apply bg-putih text-hitam font-roboto;
+    @apply bg-putih text-hitam font-roboto selection:bg-hitam selection:text-putih;
   }
 }
 
