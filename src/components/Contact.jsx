@@ -8,6 +8,7 @@ const primaryLinks = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
   { href: "#project", label: "Project" },
+  { href: "#technologies", label: "Skill" },
   { href: "#contact", label: "Contact" },
 ];
 
