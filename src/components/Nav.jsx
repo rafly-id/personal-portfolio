@@ -88,6 +88,7 @@ const Nav = () => {
         <div className="flex gap-2 md:gap-5">
           <NavLink href="#home" label="Raf" />
           <NavLink href="#about" label="About" />
+          <NavLink href="#technologies" label="Skill" />
           <NavLink href="#project" label="Project" />
           <NavLink href="#contact" label="Contact" />
         </div>
