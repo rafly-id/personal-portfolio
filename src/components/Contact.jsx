@@ -2,6 +2,7 @@ import { useRef, useLayoutEffect, useCallback } from "react";
 import ScrollSmoother from "gsap/ScrollSmoother";
 import { slideUpTextHover } from "../utils/gsapHover";
 import { useScrollAnimation } from "../utils/scrollAnimation";
+import cv from "/CV_Rafly_Adriansyah.pdf";
 
 const primaryLinks = [
   { href: "#home", label: "Home" },
@@ -83,7 +84,7 @@ const Contact = () => {
   const whatsappLink = `https://wa.me/6285974111131?text=${encodeURIComponent(
     "Halo Rafly "
   )}`;
-  const cvLink = "/CV_Rafly_Adriansyah.pdf";
+  const cvLink = cv;
 
   return (
     <section id="contact" ref={sectionRef} className="uppercase pb-5">
@@ -100,7 +101,7 @@ const Contact = () => {
           <HoverLink href={whatsappLink} label="WhatsApp" external />
         </div>
         <div className="ani p-5 md:p-30 rounded-2xl">
-          <HoverLink href={cvLink} label="Download CV" download />
+          <HoverLink href={cvLink} label="Download CV" external />
         </div>
       </div>
 
