@@ -97,11 +97,11 @@ const Contact = () => {
         LET'S TALK :
       </h1>
 
-      <div className="flex justify-around items-center px-5 mb-12 font-oswald text-xl md:text-7xl">
-        <div className="ani p-5 md:p-30 rounded-2xl">
+      <div className="flex justify-around px-5 mb-12 font-oswald text-xl md:text-7xl">
+        <div className="ani py-5 md:py-30">
           <HoverLink href={whatsappLink} label="WhatsApp" external />
         </div>
-        <div className="ani p-5 md:p-30 rounded-2xl">
+        <div className="ani py-5 md:py-30">
           <HoverLink href={cvLink} label="Download CV" external />
         </div>
       </div>
