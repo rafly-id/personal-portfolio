@@ -34,6 +34,9 @@ const About = () => {
   useScrollAnimation({
     ref: containerRef,
     itemSelector: ".text",
+    options: {
+      opacity: 0.1,
+    },
     triggerOptions: {
       end: "250px center",
       scrub: 1,
