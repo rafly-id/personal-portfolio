@@ -68,7 +68,7 @@ const Contact = () => {
       start: "center bottom",
     },
     options: {
-      stagger: 0.2,
+      stagger: 0.1,
     },
   });
 
